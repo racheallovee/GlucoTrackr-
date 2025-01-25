@@ -1,12 +1,14 @@
 const { ethers } = require("hardhat");
 
 async function main() {
-  const NFT = await ethers.getContractFactory("NFT");
-  const nft = await NFT.deploy();
+  const PatientDataManagement = await ethers.getContractFactory("NFT");
+  const patientdatamanagement = await PatientDataManagement.deploy();
 
-  await nft.deployed();
+  await patientdatamanagement.deployed();
 
-  console.log("NFT Contract Deployed at " + nft.address);
+  console.log(
+    "PatientdatamanagementContract Deployed at " + patientdatamanagement.address
+  );
 }
 
 // We recommend this pattern to be able to use async/await everywhere
