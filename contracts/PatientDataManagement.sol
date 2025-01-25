@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-
+import "contracts/RewardToken.sol";
 contract PatientDataManagement {
     struct HealthData {
         uint256 timestamp;
@@ -10,13 +10,19 @@ contract PatientDataManagement {
         string exercise;
     }
 
-    mapping(address => HealthData[]) private patientData;
+mapping(address => HealthData[]) private patientData;
+mapping(address => mapping(address => bool)) private accessPermissions;
+RewardToken private rewardToken;
+uint256 private rewardAmount = 10 * 10**18; 
 
-    mapping(address => mapping(address => bool)) private accessPermissions;
+ event DataLogged(address indexed patient, uint256 timestamp);
+ event AccessUpdated(address indexed patient, address indexed accessor, bool isGranted);
+  event RewardIssued(address indexed patient, uint256 amount);
 
-    event DataLogged(address indexed patient, uint256 timestamp);
+   constructor(address _rewardTokenAddress) {
+        rewardToken = RewardToken(_rewardTokenAddress);
+    }
 
-    event AccessUpdated(address indexed patient, address indexed accessor, bool isGranted);
 
     function logHealthData(
         uint256 _glucoseLevel,
@@ -32,6 +38,9 @@ contract PatientDataManagement {
             exercise: _exercise
         });
         patientData[msg.sender].push(newData);
+         //rewards patient when they log in data 
+        rewardToken.transfer(msg.sender, rewardAmount);
+        emit RewardIssued(msg.sender, rewardAmount);
         emit DataLogged(msg.sender, block.timestamp);
     }
 
