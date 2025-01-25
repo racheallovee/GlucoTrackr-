@@ -6,7 +6,7 @@ contract PatientDataManagement {
         uint256 timestamp;
         uint256 glucoseLevel;
         string medication;
-        string meals;
+        string meals;   
         string exercise;
     }
 
