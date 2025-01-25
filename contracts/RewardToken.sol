@@ -9,3 +9,4 @@ contract RewardToken is ERC20 {
         _mint(msg.sender, initialSupply * 10 ** decimals());
     }
 }
+   
