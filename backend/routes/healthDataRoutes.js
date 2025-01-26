@@ -1,5 +1,6 @@
 const express = require("express");
 const { ethers } = require("ethers");
+require("dotenv").config();
 
 const router = express.Router();
 
@@ -39,6 +40,23 @@ router.get("/view/:patientAddress", async (req, res) => {
     res.status(200).json(data); // Return the health data as JSON
   } catch (err) {
     res.status(500).send("Error fetching health data: " + err.message);
+  }
+});
+
+//to log new health data:
+router.post("/", async (req, res) => {
+  const { glucoseLevel, medication, meals, exercise } = req.body;
+  try {
+    const tx = await contract.logHealthData(
+      glucoseLevel,
+      medication,
+      meals,
+      exercise
+    );
+    await tx.wait();
+    res.status(200).send("Health data submitted successfully");
+  } catch (err) {
+    res.status(500).send("Error submitting health data: " + err.message);
   }
 });
 
