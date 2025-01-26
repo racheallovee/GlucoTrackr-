@@ -5,10 +5,10 @@ const router = express.Router();
 
 // Setting up the provider and contract
 const provider = new ethers.providers.JsonRpcProvider(process.env.INFURA_URL);
-const privateKey = process.env.PRIVATE_KEY;
+const privateKey = process.env.WALLET_KEY;
 const wallet = new ethers.Wallet(privateKey, provider);
-const contractAddress = "<Your_Contract_Address>";
-const abi = require("../artifacts/contracts/YourContract.json").abi;
+const contractAddress = "Contract_Address";
+const abi = require("../artifacts/contracts/PatientDataManagement.json").abi;
 const contract = new ethers.Contract(contractAddress, abi, wallet);
 
 // Route to log health data
@@ -30,10 +30,13 @@ router.post("/log", async (req, res) => {
 });
 
 // Route to retrieve health data (example placeholder)
-router.get("/view", async (req, res) => {
+
+router.get("/view/:patientAddress", async (req, res) => {
+  const patientAddress = req.params.patientAddress; // Address of the patient
+
   try {
-    const data = await contract.getHealthData(); // Replace with your contract's retrieval function
-    res.status(200).json(data);
+    const data = await contract.viewHealthData(patientAddress);
+    res.status(200).json(data); // Return the health data as JSON
   } catch (err) {
     res.status(500).send("Error fetching health data: " + err.message);
   }
