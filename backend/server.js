@@ -1,16 +1,20 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 require("dotenv").config();
 
-const app = express();
-app.use(express.json());
-app.use(require("cors")());
-
 // Importing routes
+const userRoutes = require("./routes/userRoutes");
 const healthDataRoutes = require("./routes/healthDataRoutes");
+const rewardsRoutes = require("./routes/rewardsRoutes");
+const permissionsRoutes = require("./routes/permissionsRoutes");
 
-// Registering routes
-app.use("/api/health-data", healthDataRoutes);
+// Initialize express app
+const app = express();
+
+// Middleware
+app.use(express.json()); // Parse JSON requests
+app.use(cors()); // Enable Cross-Origin Resource Sharing
 
 // MongoDB connection
 mongoose
@@ -19,7 +23,13 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+  .catch((err) => console.error("Error connecting to MongoDB:", err));
+
+// Registering routes
+app.use("/api/users", userRoutes);
+app.use("/api/health-data", healthDataRoutes);
+app.use("/api/rewards", rewardsRoutes);
+app.use("/api/permissions", permissionsRoutes);
 
 // Starting the server
 const PORT = process.env.PORT || 5000;
