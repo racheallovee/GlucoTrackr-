@@ -9,7 +9,13 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^5.2.0",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
     "ethers": "^6.13.5",
-    "https-proxy-agent": "^7.0.6"
+    "express": "^4.21.2",
+    "https-proxy-agent": "^7.0.6",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.12.0",
+    "mongoose": "^8.9.5"
   }
 }
