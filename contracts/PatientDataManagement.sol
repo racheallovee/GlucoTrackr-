@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.0;  
 import "contracts/RewardToken.sol";
 contract PatientDataManagement {
     struct HealthData {
         uint256 timestamp;
-        uint256 glucoseLevel;
+        uint256 glucoseLevel;  
         string medication;
         string meals;   
         string exercise;

@@ -11,7 +11,7 @@ const wallet = new ethers.Wallet(process.env.WALLET_KEY, provider);
 const contractAddress = process.env.CONTRACT_ADDRESS;
 const abi = require("../artifacts/contracts/PatientDataManagement.json").abi;
 const contract = new ethers.Contract(contractAddress, abi, wallet);
-
+   
 // GET /rewards/balance
 router.get("/balance", async (req, res) => {
   const { address } = req.query; // Address passed in query string: /balance?address=0x...
