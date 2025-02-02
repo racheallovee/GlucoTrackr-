@@ -13,7 +13,7 @@ describe("PatientDataManagement", function () {
     patientDataManagement = await PatientDataManagement.deploy(
       "0xRewardTokenAddress"
     );
-  });
+  });  
 
   it("Should log health data and emit an event", async function () {
     await expect(
