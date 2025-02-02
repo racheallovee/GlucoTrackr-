@@ -14,6 +14,7 @@ contract PatientDataManagement {
 
     mapping(address => HealthData[]) private patientData;
     mapping(address => mapping(address => bool)) private accessPermissions;
+    mapping(address => bool) private emergencyAccessors;
     RewardToken private rewardToken;
     uint256 private rewardAmount;
     address private owner;
@@ -74,4 +75,28 @@ contract PatientDataManagement {
     function setRewardAmount(uint256 _newRewardAmount) public onlyOwner {
         rewardAmount = _newRewardAmount;
     }
+
+    
+
+function grantEmergencyAccess(address _accessor) public onlyOwner {
+    emergencyAccessors[_accessor] = true;
+}
+
+function revokeEmergencyAccess(address _accessor) public onlyOwner {
+    emergencyAccessors[_accessor] = false;
+}
+
+
+function viewHealthData(address _patient) public view returns (HealthData[] memory) {
+    require(
+        _patient == msg.sender || accessPermissions[_patient][msg.sender] || emergencyAccessors[msg.sender],
+        "Access not authorized"
+    );
+    return patientData[_patient];
+}
+
+function deleteHealthData(uint256 _index) public {
+    require(_index < patientData[msg.sender].length, "Invalid index");
+    delete patientData[msg.sender][_index];
+}
 }
