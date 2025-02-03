@@ -100,3 +100,31 @@ function deleteHealthData(uint256 _index) public {
     delete patientData[msg.sender][_index];
 }
 }
+function getAverageGlucoseLevel(address _patient, uint256 _startTime, uint256 _endTime) public view returns (uint256) {
+    require(
+        _patient == msg.sender || accessPermissions[_patient][msg.sender],
+        "Access not authorized"
+    );
+    uint256 total = 0;
+    uint256 count = 0;
+    for (uint256 i = 0; i < patientData[_patient].length; i++) {
+        if (patientData[_patient][i].timestamp >= _startTime && patientData[_patient][i].timestamp <= _endTime) {
+            total += patientData[_patient][i].glucoseLevel;
+            count++;
+        }
+    }
+    require(count > 0, "No data in the specified range");
+    return total / count;
+}
+
+function viewMultiplePatientsData(address[] memory _patients) public view returns (HealthData[][] memory) {
+    HealthData[][] memory allData = new HealthData[][](_patients.length);
+    for (uint256 i = 0; i < _patients.length; i++) {
+        require(
+            accessPermissions[_patients[i]][msg.sender],
+            "Access not authorized"
+        );
+        allData[i] = patientData[_patients[i]];
+    }
+    return allData;
+}
