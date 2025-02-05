@@ -1,5 +1,3 @@
-
-
 const express = require("express");
 const dataController = require("../controllers/dataController");
 const authenticateToken = require("../middleware/authenticateToken");
