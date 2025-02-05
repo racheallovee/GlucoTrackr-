@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User");
 
 // Initialize Web3
-const web3 = new Web3("https://rpc.sepolia-api.lisk.com/");
+const web3 = new Web3("https://rpc.sepolia-api.lisk.com");
 
 exports.register = async (req, res) => {
   try {
