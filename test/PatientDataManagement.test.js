@@ -136,6 +136,7 @@ describe("PatientDataManagement", function () {
       const patient1Balance = await rewardToken.balanceOf(patient1.address);
       expect(patient1Balance).to.equal(newRewardAmount);
     });
+    
 
     it("should not allow non-owners to set the reward amount", async function () {
       const newRewardAmount = ethers.utils.parseEther("20");
