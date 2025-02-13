@@ -1,37 +1,42 @@
-# GlucoTrackr
+# 🔵💙GlucoTrackr💙🔵
 
-GlucoTrackr is an innovative health tracking app designed to empower users with smarter and more personalized care. Built with Web3 technology, it ensures transparency, data security, and ease of use.
+## GlucoTrackr is a decentralized diabetes management application that empowers patients to securely track their health data, verify records on-chain, and earn incentives for proactive diabetes care. Built on blockchain technology, it ensures data privacy, transparency, and ownership for users while integrating Web3-powered health solutions.
 
----
+## Features🚀
 
-## Features
-
-- **Personalized Health Tracking**: Monitor glucose levels, medications, meals, and physical activities.
-- **Data Security**: Blockchain technology ensures secure and tamper-proof data storage.
-- **Community Support**: Share anonymized, non-identifiable health insights to support research and collaboration.
-- **Customizable Reminders**: Set reminders for medication, check-ups, and other critical tasks.
+-**✅ Web3 Wallet Authentication** – Secure login via MetaMask or WalletConnect -**✅ On-Chain Health Data Verification** – Patients can store and verify glucose readings on blockchain -**✅ Decentralized Medical Records** – Secure storage for patient health data -**✅ Incentivized Health Tracking** – Rewards for consistent monitoring and healthy habits -**✅ Doctor & Patient Interaction** – Verified healthcare professionals can access patient records (with consent) -**✅ Seamless Web2 & Web3 Integration** – MongoDB for off-chain storage, blockchain for security-critical features
 
 ---
 
-## Project Structure
+## Tech Stack🛠️
 
-- **Frontend**: A user-friendly interface for data input and visualization.
-- **Backend**: Smart contracts written in Solidity and deployed on a blockchain platform.
-- **Blockchain Integration**: Ensures secure and decentralized data handling.
+-**Smart Contracts**: Solidity, Hardhat, Lisk -**Blockchain Interaction**: Ethers.js -**Backend**: Node.js, Express, MongoDB -**Frontend**: React.js (if applicable) -**Authentication**: MetaMask, WalletConnect -**Deployment**: Lisk, Sepolia Testnet
 
 ---
 
-## Getting Started
+## Project Goals🎯
 
-### Prerequisites
+-📌 Empower diabetes patients with full control over their health records
+-📌 Enhance data security & transparency through blockchain technology
+-📌 Encourage proactive health monitoring with Web3-powered incentives
+-📌 Bridge the gap between traditional healthcare and decentralized solutions
 
-Ensure you have the following installed on your system:
+---
 
-- Node.js (v16 or later)
-- npm (v7 or later)
-- Git
+## Getting Started📖
 
-### Installation
+## Prerequisites🔹
+
+Ensure you have the following installed:
+
+-Node.js (v18+)
+-Hardhat
+-MetaMask (for Web3 authentication)
+-MongoDB (if using off-chain storage)
+
+---
+
+### Installation & Setup
 
 1. Clone the repository:
    ```bash
@@ -42,25 +47,28 @@ Ensure you have the following installed on your system:
    ```bash
    npm install
    ```
+3. Set Up Environment Variables:
+   Create a .env file in the root directory and add:
 
----
+-**PRIVATE_KEY**=your_blockchain_private_key -**MONGO_URI**=your_mongodb_connection_string -**PORT**=3000
 
-## Usage
+4. Deploy Smart Contracts:
+   npx hardhat run scripts/deploy.js --network sepolia
 
-### Running the Project Locally
+5. Start the Backend Server:
+   node backend/server.js
 
-1. Start the development server:
-   ```bash
+6. Start the Frontend :
+   cd frontend
    npm start
-   ```
-2. Open the app in your browser:
-   ```
-   http://localhost:3000
-   ```
 
 ---
 
-## Development Workflow
+## Roadmap🌎
+
+-**🚧 Phase 1**: Develop & deploy smart contracts -**🚀 Phase 2**: Build and integrate backend API -**🎨 Phase 3**: Develop a responsive frontend UI -**🌍 Phase 4**: Launch beta version and gather user feedback
+
+---
 
 ### Adding New Features
 
@@ -86,16 +94,6 @@ npm test
 ## Contributing
 
 We welcome contributions from the community! Feel free to fork the repository and submit pull requests for new features, bug fixes, or optimizations.
-
----
-
-## Roadmap
-
-- [x] Design the wireframes for the app.
-- [x] Set up the development environment.
-- [ ] Implement core features.
-- [ ] Integrate blockchain for secure data handling.
-- [ ] Launch beta testing.
 
 ---
 
