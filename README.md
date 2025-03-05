@@ -10,7 +10,7 @@
 
 ## Tech Stack🛠️
 
--**Smart Contracts**: Solidity, Hardhat, Lisk -**Blockchain Interaction**: Ethers.js -**Backend**: Node.js, Express, MongoDB -**Frontend**: React.js (if applicable) -**Authentication**: MetaMask, WalletConnect -**Deployment**: Lisk, Sepolia Testnet
+-**Smart Contracts**: Solidity, Hardhat, Lisk -**Blockchain Interaction**: Ethers.js -**Backend**: Node.js, Express, MongoDB -**Frontend**: React.js -**Authentication**: MetaMask, WalletConnect -**Deployment**: Lisk, Sepolia Testnet
 
 ---
 
