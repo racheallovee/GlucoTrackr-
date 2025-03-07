@@ -23,7 +23,7 @@ const HeroSection = () => {
       <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-blue-100/20 blur-3xl"></div>
       <div className="absolute top-1/2 -left-24 w-64 h-64 rounded-full bg-blue-100/30 blur-3xl"></div>
 
-      <div className="container mx-auto lg:px-20 py-16 md:py-24 lg:py-28 max-w-7xl relative z-10">
+      <div className="container mx-auto lg:px-20 md:px-6 py-16 md:py-24 lg:py-28 max-w-7xl relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           {/* Text content */}
           <motion.div
