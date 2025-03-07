@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -40,13 +41,14 @@ const Navbar = () => {
       animate="visible"
       variants={navVariants}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 ${
-        isScrolled ? "bg-white shadow-md py-3" : "bg-transparent py-5"
+      className={`fixed top-6 left-0 right-0 z-50 mx-auto max-w-5xl w-[95%] rounded-xl ${
+        isScrolled ? "bg-white/95 backdrop-blur-sm shadow-sm py-3" : "bg-white/90 backdrop-blur-sm py-4"
       } transition-all duration-300`}
+      style={{ transform: 'none' }}
     >
-      <div className="container mx-auto px-6">
+      <div className="px-6">
         <div className="flex justify-between items-center">
-          {/* Logo */}
+          {/* Logo - Left Side */}
           <Link to="/" className="flex items-center">
             <motion.div
               whileHover={{ scale: 1.1 }}
@@ -59,12 +61,8 @@ const Navbar = () => {
             </span>
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center space-x-8">
-            <a href="#home" className={navLinkClass}>
-              <span>Home</span>
-              <motion.div className="absolute bottom-0 left-0 w-full h-0.5 bg-glucotrack-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-            </a>
+          {/* Desktop Navigation Links - Center */}
+          <div className="hidden md:flex items-center justify-center space-x-8">
             <a href="#features" className={navLinkClass}>
               <span>Features</span>
               <motion.div className="absolute bottom-0 left-0 w-full h-0.5 bg-glucotrack-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
@@ -73,20 +71,30 @@ const Navbar = () => {
               <span>About</span>
               <motion.div className="absolute bottom-0 left-0 w-full h-0.5 bg-glucotrack-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
             </a>
-            <a href="#contact" className={navLinkClass}>
-              <span>Contact</span>
+            <a href="#pricing" className={navLinkClass}>
+              <span>Pricing</span>
               <motion.div className="absolute bottom-0 left-0 w-full h-0.5 bg-glucotrack-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
             </a>
-            <a
-              href="#waitlist"
-              className="btn-primary text-sm px-5 py-2 relative overflow-hidden"
-            >
-              <span className="relative z-10">Join Waitlist</span>
-              <motion.div
-                className="absolute inset-0 bg-glucotrack-blue transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300"
-                style={{ zIndex: 0 }}
-              />
+            <a href="#blog" className={navLinkClass}>
+              <span>Blog</span>
+              <motion.div className="absolute bottom-0 left-0 w-full h-0.5 bg-glucotrack-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
             </a>
+          </div>
+
+          {/* Auth Buttons - Right Side */}
+          <div className="hidden md:flex items-center space-x-3">
+            <Link 
+              to="/login" 
+              className="px-4 py-2 rounded-md bg-glucotrack-light-blue/10 hover:bg-glucotrack-light-blue/20 text-glucotrack-blue transition-colors duration-300 text-sm font-medium"
+            >
+              Log in
+            </Link>
+            <Link 
+              to="/signup" 
+              className="px-4 py-2 rounded-md bg-glucotrack-blue text-white hover:bg-glucotrack-blue/90 transition-colors duration-300 text-sm font-medium"
+            >
+              Sign up
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -106,21 +114,32 @@ const Navbar = () => {
           className="md:hidden overflow-hidden"
         >
           <div className="py-4 flex flex-col">
-            <a href="#home" className={mobileNavLinkClass}>
-              Home
-            </a>
             <a href="#features" className={mobileNavLinkClass}>
               Features
             </a>
             <a href="#about" className={mobileNavLinkClass}>
               About
             </a>
-            <a href="#contact" className={mobileNavLinkClass}>
-              Contact
+            <a href="#pricing" className={mobileNavLinkClass}>
+              Pricing
             </a>
-            <a href="#waitlist" className="btn-primary text-center mt-4">
-              Join Waitlist
+            <a href="#blog" className={mobileNavLinkClass}>
+              Blog
             </a>
+            <div className="flex flex-col space-y-2 mt-4">
+              <Link 
+                to="/login" 
+                className="px-4 py-2 rounded-md bg-glucotrack-light-blue/10 text-glucotrack-blue text-center font-medium"
+              >
+                Log in
+              </Link>
+              <Link 
+                to="/signup" 
+                className="px-4 py-2 rounded-md bg-glucotrack-blue text-white text-center font-medium"
+              >
+                Sign up
+              </Link>
+            </div>
           </div>
         </motion.div>
       </div>
