@@ -1,12 +1,14 @@
+
 import { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Menu, X, LogIn, UserPlus } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const controls = useAnimation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,15 +26,33 @@ const Navbar = () => {
     );
   };
 
+  const scrollToSection = (sectionId: string) => {
+    setIsMenuOpen(false);
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // If we're not on the home page, navigate there first
+      navigate("/");
+      // Need to wait for the page to load before scrolling
+      setTimeout(() => {
+        const newElement = document.getElementById(sectionId);
+        if (newElement) {
+          newElement.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  };
+
   const navVariants = {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0 },
   };
 
   const navLinkClass =
-    "text-gray-700 hover:text-glucotrack-blue transition-colors duration-300 relative group";
+    "text-gray-700 hover:text-glucotrack-blue transition-colors duration-300 relative group cursor-pointer";
   const mobileNavLinkClass =
-    "text-lg text-gray-700 hover:text-glucotrack-blue py-4 block";
+    "text-lg text-gray-700 hover:text-glucotrack-blue py-4 block cursor-pointer";
 
   return (
     <motion.nav
@@ -64,29 +84,29 @@ const Navbar = () => {
 
           {/* Desktop Navigation Links - Center */}
           <div className="hidden md:flex items-center justify-center space-x-8">
-            <a href="#features" className={navLinkClass}>
+            <div onClick={() => scrollToSection("features")} className={navLinkClass}>
               <span>Features</span>
               <motion.div className="absolute bottom-0 left-0 w-full h-0.5 bg-glucotrack-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-            </a>
-            <a href="#about" className={navLinkClass}>
+            </div>
+            <div onClick={() => scrollToSection("why-choose-us")} className={navLinkClass}>
               <span>About</span>
               <motion.div className="absolute bottom-0 left-0 w-full h-0.5 bg-glucotrack-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-            </a>
-            <a href="#pricing" className={navLinkClass}>
-              <span>Pricing</span>
+            </div>
+            <div onClick={() => scrollToSection("waitlist")} className={navLinkClass}>
+              <span>CTA</span>
               <motion.div className="absolute bottom-0 left-0 w-full h-0.5 bg-glucotrack-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-            </a>
-            <a href="#blog" className={navLinkClass}>
-              <span>Blog</span>
+            </div>
+            <div onClick={() => scrollToSection("faq")} className={navLinkClass}>
+              <span>FAQs</span>
               <motion.div className="absolute bottom-0 left-0 w-full h-0.5 bg-glucotrack-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-            </a>
+            </div>
           </div>
 
           {/* Auth Buttons - Right Side */}
           <div className="hidden md:flex items-center space-x-3">
             <Link
               to="/login"
-              className="px-4 py-2 rounded-md bg-glucotrack-light-blue/10 hover:bg-glucotrack-light-blue/20 text-glucotrack-blue transition-colors duration-300 text-sm font-medium"
+              className="px-4 py-2 rounded-md bg-glucotrack-blue/10 hover:bg-glucotrack-blue/20 text-glucotrack-blue transition-colors duration-300 text-sm font-medium"
             >
               Log in
             </Link>
@@ -115,22 +135,22 @@ const Navbar = () => {
           className="md:hidden overflow-hidden"
         >
           <div className="py-4 flex flex-col">
-            <a href="#features" className={mobileNavLinkClass}>
+            <div onClick={() => scrollToSection("features")} className={mobileNavLinkClass}>
               Features
-            </a>
-            <a href="#about" className={mobileNavLinkClass}>
+            </div>
+            <div onClick={() => scrollToSection("why-choose-us")} className={mobileNavLinkClass}>
               About
-            </a>
-            <a href="#pricing" className={mobileNavLinkClass}>
+            </div>
+            <div onClick={() => scrollToSection("waitlist")} className={mobileNavLinkClass}>
               CTA
-            </a>
-            <a href="#blog" className={mobileNavLinkClass}>
+            </div>
+            <div onClick={() => scrollToSection("faq")} className={mobileNavLinkClass}>
               FAQs
-            </a>
+            </div>
             <div className="flex flex-col space-y-2 mt-4">
               <Link
                 to="/login"
-                className="px-4 py-2 rounded-md bg-glucotrack-light-blue/10 text-glucotrack-blue text-center font-medium"
+                className="px-4 py-2 rounded-md bg-glucotrack-blue/10 text-glucotrack-blue text-center font-medium"
               >
                 Log in
               </Link>
