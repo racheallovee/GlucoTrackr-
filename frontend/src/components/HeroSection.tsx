@@ -23,7 +23,7 @@ const HeroSection = () => {
       <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-blue-100/20 blur-3xl"></div>
       <div className="absolute top-1/2 -left-24 w-64 h-64 rounded-full bg-blue-100/30 blur-3xl"></div>
 
-      <div className="container mx-auto px-6 py-16 md:py-24 lg:py-28 max-w-7xl relative z-10">
+      <div className="container mx-auto lg:px-20 py-16 md:py-24 lg:py-28 max-w-7xl relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           {/* Text content */}
           <motion.div
@@ -66,8 +66,17 @@ const HeroSection = () => {
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <a href="#waitlist" className="btn-primary group">
-                  Join the waitlist
                   <ChevronRight className="ml-1 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  For Patients
+                </a>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isLoaded ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                <a href="#learn-more" className="btn-secondary">
+                  For Researchers
                 </a>
               </motion.div>
 
@@ -77,7 +86,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
                 <a href="#learn-more" className="btn-secondary">
-                  Learn more
+                  For Doctors
                 </a>
               </motion.div>
             </div>
