@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -42,9 +41,11 @@ const Navbar = () => {
       variants={navVariants}
       transition={{ duration: 0.5 }}
       className={`fixed top-6 left-0 right-0 z-50 mx-auto max-w-5xl w-[95%] rounded-xl ${
-        isScrolled ? "bg-white/95 backdrop-blur-sm shadow-sm py-3" : "bg-white/90 backdrop-blur-sm py-4"
+        isScrolled
+          ? "bg-white/95 backdrop-blur-sm shadow-sm py-3"
+          : "bg-white/90 backdrop-blur-sm py-4"
       } transition-all duration-300`}
-      style={{ transform: 'none' }}
+      style={{ transform: "none" }}
     >
       <div className="px-6">
         <div className="flex justify-between items-center">
@@ -83,14 +84,14 @@ const Navbar = () => {
 
           {/* Auth Buttons - Right Side */}
           <div className="hidden md:flex items-center space-x-3">
-            <Link 
-              to="/login" 
+            <Link
+              to="/login"
               className="px-4 py-2 rounded-md bg-glucotrack-light-blue/10 hover:bg-glucotrack-light-blue/20 text-glucotrack-blue transition-colors duration-300 text-sm font-medium"
             >
               Log in
             </Link>
-            <Link 
-              to="/signup" 
+            <Link
+              to="/signup"
               className="px-4 py-2 rounded-md bg-glucotrack-blue text-white hover:bg-glucotrack-blue/90 transition-colors duration-300 text-sm font-medium"
             >
               Sign up
@@ -121,20 +122,20 @@ const Navbar = () => {
               About
             </a>
             <a href="#pricing" className={mobileNavLinkClass}>
-              Pricing
+              CTA
             </a>
             <a href="#blog" className={mobileNavLinkClass}>
-              Blog
+              FAQs
             </a>
             <div className="flex flex-col space-y-2 mt-4">
-              <Link 
-                to="/login" 
+              <Link
+                to="/login"
                 className="px-4 py-2 rounded-md bg-glucotrack-light-blue/10 text-glucotrack-blue text-center font-medium"
               >
                 Log in
               </Link>
-              <Link 
-                to="/signup" 
+              <Link
+                to="/signup"
                 className="px-4 py-2 rounded-md bg-glucotrack-blue text-white text-center font-medium"
               >
                 Sign up
