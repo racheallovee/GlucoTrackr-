@@ -45,7 +45,7 @@ const HeroSection = () => {
             >
               Take control of your
               <span className="text-glucotrack-blue"> diabetes</span> with
-              precision
+              precision today
             </motion.h1>
 
             <motion.p
