@@ -109,6 +109,8 @@ For questions or suggestions, feel free to reach out:
 
 - Email: rachealloveo6@gmail.com
 - Twitter: https://x.com/Racheallovee
-
-  ## Live URL
-  https://glucotrackr.vercel.app/
+  
+---
+  
+## Live URL
+https://glucotrackr.vercel.app/
