@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ChevronRight, Shield, Users, Star } from "lucide-react";
 import FeatureBadge from "./FeatureBadge";
 import WaitlistModal from "./WaitlistModal";
+import { Link } from "react-router-dom";
 
 const CTASection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -61,15 +62,23 @@ const CTASection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isLoaded ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="w-full max-w-md"
+              className="w-full max-w-md flex flex-col sm:flex-row gap-4 justify-center"
             >
               <button
                 onClick={() => setShowWaitlistModal(true)}
-                className="w-full btn-primary flex items-center justify-center py-4 text-lg group"
+                className="btn-primary flex items-center justify-center py-4 text-lg group"
               >
                 Join the Waitlist
                 <ChevronRight className="ml-1 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
               </button>
+              
+              <Link
+                to="/patient-blockchain"
+                className="btn-secondary flex items-center justify-center py-4 text-lg group"
+              >
+                Try Blockchain Features
+                <ChevronRight className="ml-1 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
             </motion.div>
 
             <motion.p
