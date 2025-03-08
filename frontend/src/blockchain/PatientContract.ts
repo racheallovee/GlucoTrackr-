@@ -1,7 +1,6 @@
-
 import { ethers } from "ethers";
 
-export const CONTRACT_ADDRESS = "0x0000000000000000000000000000000000000000"; // Replace with actual deployed contract address
+export const CONTRACT_ADDRESS = "0xC996781b23b0d6a7e60585B2349eC546f44cFF48";
 
 export const CONTRACT_ABI = [
   "function logHealthData(uint256 _glucoseLevel, bytes32 _medicationHash, bytes32 _mealsHash, bytes32 _exerciseHash)",
@@ -10,7 +9,7 @@ export const CONTRACT_ABI = [
   "function deleteHealthData(uint256 _index)",
   "function getAverageGlucoseLevel(address _patient, uint256 _startTime, uint256 _endTime) view returns (uint256)",
   "event DataLogged(address indexed patient, uint256 timestamp, uint256 glucoseLevel, bytes32 medicationHash, bytes32 mealsHash, bytes32 exerciseHash)",
-  "event AccessUpdated(address indexed patient, address indexed accessor, bool isGranted)"
+  "event AccessUpdated(address indexed patient, address indexed accessor, bool isGranted)",
 ];
 
 export interface HealthData {
