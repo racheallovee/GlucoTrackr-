@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
@@ -24,7 +23,10 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="home" className="relative w-full overflow-hidden bg-gradient-to-b from-white to-blue-50 ">
+    <section
+      id="home"
+      className="relative w-full overflow-hidden bg-gradient-to-b from-white to-blue-50 "
+    >
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-full h-full bg-hero-pattern opacity-70"></div>
       <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-blue-100/20 blur-3xl"></div>
@@ -37,24 +39,25 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isLoaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="flex flex-col items-start"
+            className="lg:flex flex-col items-start"
           >
-            <FeatureBadge
-              label="Smart Diabetes Management"
-              icon={<ActivitySquare size={14} />}
-            />
+            <div className="hidden lg:flex">
+              <FeatureBadge
+                label="Smart Diabetes Management"
+                icon={<ActivitySquare size={14} />}
+              />
+            </div>
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={isLoaded ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-glucotrack-dark-gray mt-4 mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-glucotrack-dark-gray mt-4 lg:pt-1 pt-6 mb-6"
             >
               Take control of your
               <span className="text-glucotrack-blue"> diabetes</span> with
               precision today
             </motion.h1>
-
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={isLoaded ? { opacity: 1, y: 0 } : {}}
@@ -65,14 +68,13 @@ const HeroSection = () => {
               insights, and Web3 integration for a seamless diabetes management
               experience.
             </motion.p>
-
             <div className="flex flex-wrap gap-4 mb-10">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={isLoaded ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <motion.button 
+                <motion.button
                   whileHover={{ y: -3 }}
                   whileTap={{ y: 2 }}
                   onClick={() => navigateToUserType("patients")}
@@ -87,7 +89,7 @@ const HeroSection = () => {
                 animate={isLoaded ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <motion.button 
+                <motion.button
                   whileHover={{ y: -3 }}
                   whileTap={{ y: 2 }}
                   onClick={() => navigateToUserType("doctors")}
@@ -102,7 +104,7 @@ const HeroSection = () => {
                 animate={isLoaded ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <motion.button 
+                <motion.button
                   whileHover={{ y: -3 }}
                   whileTap={{ y: 2 }}
                   onClick={() => navigateToUserType("researchers")}
@@ -112,7 +114,6 @@ const HeroSection = () => {
                 </motion.button>
               </motion.div>
             </div>
-
             <motion.div
               initial={{ opacity: 0 }}
               animate={isLoaded ? { opacity: 1 } : {}}
