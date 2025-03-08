@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { LogIn, Mail, Lock, ArrowLeft, Eye, EyeOff } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,21 +13,25 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { signIn, user } = useAuth();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Redirect if already logged in
+  if (user) {
+    navigate("/");
+    return null;
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate login process
-    setTimeout(() => {
-      setIsSubmitting(false);
-      toast({
-        title: "Login Successful",
-        description: "Welcome back to GlucoTrackr!",
-      });
-      // Redirect to home page after successful login
+    const { error } = await signIn(email, password);
+    
+    if (!error) {
       navigate("/");
-    }, 1500);
+    }
+    
+    setIsSubmitting(false);
   };
 
   return (

@@ -1,16 +1,19 @@
 
 import { useState } from "react";
 import { useWeb3 } from "@/hooks/useWeb3";
+import { useAuth } from "@/hooks/useAuth";
 import ConnectWallet from "@/components/blockchain/ConnectWallet";
 import HealthDataForm from "@/components/blockchain/HealthDataForm";
 import HealthDataHistory from "@/components/blockchain/HealthDataHistory";
 import AccessControl from "@/components/blockchain/AccessControl";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AlertCircle, Info } from "lucide-react";
+import { AlertCircle, Info, LogOut } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
 
 const PatientBlockchain = () => {
   const { isConnected } = useWeb3();
+  const { user, signOut } = useAuth();
   const [activeTab, setActiveTab] = useState("log");
   
   return (
@@ -20,7 +23,20 @@ const PatientBlockchain = () => {
           <h1 className="text-3xl font-bold text-glucotrack-dark-gray">
             Blockchain Health Records
           </h1>
-          <ConnectWallet />
+          <div className="flex items-center gap-3">
+            {user && (
+              <div className="flex items-center mr-4">
+                <span className="text-sm text-gray-500 mr-2">
+                  {user.email}
+                </span>
+                <Button variant="outline" size="sm" onClick={signOut}>
+                  <LogOut className="h-4 w-4 mr-1" />
+                  Logout
+                </Button>
+              </div>
+            )}
+            <ConnectWallet />
+          </div>
         </div>
         
         {!isConnected ? (

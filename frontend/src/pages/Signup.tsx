@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { UserPlus, Mail, Lock, User, ArrowLeft, Eye, EyeOff } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
 
 const Signup = () => {
   const [fullName, setFullName] = useState("");
@@ -13,21 +14,30 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { signUp, user } = useAuth();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Redirect if already logged in
+  if (user) {
+    navigate("/");
+    return null;
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate signup process
-    setTimeout(() => {
-      setIsSubmitting(false);
-      toast({
-        title: "Account Created",
-        description: "Welcome to GlucoTrackr! Your account has been created successfully.",
-      });
-      // Redirect to home page after successful signup
-      navigate("/");
-    }, 1500);
+    const userData = {
+      full_name: fullName,
+      user_type: "patient" // Default user type
+    };
+    
+    const { error } = await signUp(email, password, userData);
+    
+    if (!error) {
+      navigate("/login");
+    }
+    
+    setIsSubmitting(false);
   };
 
   return (
