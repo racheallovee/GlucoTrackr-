@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { Menu, X, LogIn, UserPlus } from "lucide-react";
@@ -59,7 +60,7 @@ const Navbar = () => {
       animate="visible"
       variants={navVariants}
       transition={{ duration: 0.5 }}
-      className={`fixed top-6 left-0 right-0 z-50 mx-auto max-w-5xl w-[95%] rounded-xl ${
+      className={`fixed ${isScrolled ? "top-0" : "top-6"} left-0 right-0 z-50 mx-auto max-w-5xl w-[95%] rounded-xl ${
         isScrolled
           ? "bg-blue-50/95 backdrop-blur-sm shadow-sm py-3"
           : "bg-blue-50/90 backdrop-blur-sm py-4"

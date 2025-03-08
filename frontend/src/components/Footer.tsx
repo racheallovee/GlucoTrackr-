@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import {
   Mail,
@@ -10,9 +11,11 @@ import {
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import ContactSupportModal from "./ContactSupportModal";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
+  const [showContactModal, setShowContactModal] = useState(false);
   const { toast } = useToast();
 
   const handleSubscribe = (e: React.FormEvent) => {
@@ -27,12 +30,22 @@ const Footer = () => {
     }
 
     // In a real app, this would connect to an API
+    console.log("Subscription email:", email);
+    console.log("Email will be sent to: rachealloveo6@gmail.com");
+    
     toast({
       title: "Thank you for subscribing!",
       description:
         "You'll be notified of updates and early access opportunities.",
     });
     setEmail("");
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -89,36 +102,36 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a
-                  href="#home"
+                <button
+                  onClick={() => scrollToSection("home")}
                   className="text-gray-300 hover:text-glucotrack-blue transition-colors duration-200"
                 >
                   Home
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="#features"
+                <button
+                  onClick={() => scrollToSection("features")}
                   className="text-gray-300 hover:text-glucotrack-blue transition-colors duration-200"
                 >
                   Features
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="#about"
+                <button
+                  onClick={() => scrollToSection("about")}
                   className="text-gray-300 hover:text-glucotrack-blue transition-colors duration-200"
                 >
                   About Us
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="#waitlist"
+                <button
+                  onClick={() => scrollToSection("waitlist")}
                   className="text-gray-300 hover:text-glucotrack-blue transition-colors duration-200"
                 >
                   Join Waitlist
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -144,12 +157,12 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
+                <button
+                  onClick={() => setShowContactModal(true)}
                   className="text-gray-300 hover:text-glucotrack-blue transition-colors duration-200"
                 >
                   Support
-                </a>
+                </button>
               </li>
               <li>
                 <a
@@ -234,6 +247,12 @@ const Footer = () => {
           </div>
         </div>
       </div>
+
+      {/* Contact Support Modal */}
+      <ContactSupportModal 
+        isOpen={showContactModal}
+        onClose={() => setShowContactModal(false)}
+      />
     </footer>
   );
 };

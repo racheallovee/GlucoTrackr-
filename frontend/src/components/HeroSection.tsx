@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
@@ -6,18 +7,24 @@ import {
   LineChart,
   Smartphone,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import AppMockup from "./AppMockup";
 import FeatureBadge from "./FeatureBadge";
 
 const HeroSection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoaded(true);
   }, []);
 
+  const navigateToUserType = (type: string) => {
+    navigate(`/user-type?type=${type}`);
+  };
+
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-b from-white to-blue-50 ">
+    <section id="home" className="relative w-full overflow-hidden bg-gradient-to-b from-white to-blue-50 ">
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-full h-full bg-hero-pattern opacity-70"></div>
       <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-blue-100/20 blur-3xl"></div>
@@ -65,19 +72,29 @@ const HeroSection = () => {
                 animate={isLoaded ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <a href="#waitlist" className="btn-primary group">
+                <motion.button 
+                  whileHover={{ y: -3 }}
+                  whileTap={{ y: 2 }}
+                  onClick={() => navigateToUserType("patients")}
+                  className="btn-primary group"
+                >
+                  Get Started Now
                   <ChevronRight className="ml-1 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  For Patients
-                </a>
+                </motion.button>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={isLoaded ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <a href="#learn-more" className="btn-secondary">
-                  For Researchers
-                </a>
+                <motion.button 
+                  whileHover={{ y: -3 }}
+                  whileTap={{ y: 2 }}
+                  onClick={() => navigateToUserType("doctors")}
+                  className="btn-secondary"
+                >
+                  For Doctors
+                </motion.button>
               </motion.div>
 
               <motion.div
@@ -85,9 +102,14 @@ const HeroSection = () => {
                 animate={isLoaded ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <a href="#learn-more" className="btn-secondary">
-                  For Doctors
-                </a>
+                <motion.button 
+                  whileHover={{ y: -3 }}
+                  whileTap={{ y: 2 }}
+                  onClick={() => navigateToUserType("researchers")}
+                  className="btn-secondary"
+                >
+                  For Researchers
+                </motion.button>
               </motion.div>
             </div>
 

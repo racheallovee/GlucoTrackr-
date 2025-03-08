@@ -1,10 +1,13 @@
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ChevronRight, Shield, Users, Star } from "lucide-react";
 import FeatureBadge from "./FeatureBadge";
+import WaitlistModal from "./WaitlistModal";
 
 const CTASection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showWaitlistModal, setShowWaitlistModal] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -60,13 +63,13 @@ const CTASection = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="w-full max-w-md"
             >
-              <a
-                href="#signup"
+              <button
+                onClick={() => setShowWaitlistModal(true)}
                 className="w-full btn-primary flex items-center justify-center py-4 text-lg group"
               >
                 Join the Waitlist
                 <ChevronRight className="ml-1 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </a>
+              </button>
             </motion.div>
 
             <motion.p
@@ -103,6 +106,12 @@ const CTASection = () => {
           </div>
         </div>
       </div>
+
+      {/* Waitlist Modal */}
+      <WaitlistModal 
+        isOpen={showWaitlistModal}
+        onClose={() => setShowWaitlistModal(false)}
+      />
     </section>
   );
 };
