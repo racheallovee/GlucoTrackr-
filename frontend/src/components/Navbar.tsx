@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { Menu, X, LogIn, UserPlus } from "lucide-react";
@@ -84,19 +83,31 @@ const Navbar = () => {
 
           {/* Desktop Navigation Links - Center */}
           <div className="hidden md:flex items-center justify-center space-x-8">
-            <div onClick={() => scrollToSection("features")} className={navLinkClass}>
+            <div
+              onClick={() => scrollToSection("features")}
+              className={navLinkClass}
+            >
               <span>Features</span>
               <motion.div className="absolute bottom-0 left-0 w-full h-0.5 bg-glucotrack-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
             </div>
-            <div onClick={() => scrollToSection("why-choose-us")} className={navLinkClass}>
+            <div
+              onClick={() => scrollToSection("why-choose-us")}
+              className={navLinkClass}
+            >
               <span>About</span>
               <motion.div className="absolute bottom-0 left-0 w-full h-0.5 bg-glucotrack-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
             </div>
-            <div onClick={() => scrollToSection("waitlist")} className={navLinkClass}>
+            <div
+              onClick={() => scrollToSection("waitlist")}
+              className={navLinkClass}
+            >
               <span>CTA</span>
               <motion.div className="absolute bottom-0 left-0 w-full h-0.5 bg-glucotrack-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
             </div>
-            <div onClick={() => scrollToSection("faq")} className={navLinkClass}>
+            <div
+              onClick={() => scrollToSection("faq")}
+              className={navLinkClass}
+            >
               <span>FAQs</span>
               <motion.div className="absolute bottom-0 left-0 w-full h-0.5 bg-glucotrack-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
             </div>
@@ -135,16 +146,28 @@ const Navbar = () => {
           className="md:hidden overflow-hidden"
         >
           <div className="py-4 flex flex-col">
-            <div onClick={() => scrollToSection("features")} className={mobileNavLinkClass}>
+            <div
+              onClick={() => scrollToSection("features")}
+              className={mobileNavLinkClass}
+            >
               Features
             </div>
-            <div onClick={() => scrollToSection("why-choose-us")} className={mobileNavLinkClass}>
+            <div
+              onClick={() => scrollToSection("why-choose-us")}
+              className={mobileNavLinkClass}
+            >
               About
             </div>
-            <div onClick={() => scrollToSection("waitlist")} className={mobileNavLinkClass}>
+            <div
+              onClick={() => scrollToSection("waitlist")}
+              className={mobileNavLinkClass}
+            >
               CTA
             </div>
-            <div onClick={() => scrollToSection("faq")} className={mobileNavLinkClass}>
+            <div
+              onClick={() => scrollToSection("faq")}
+              className={mobileNavLinkClass}
+            >
               FAQs
             </div>
             <div className="flex flex-col space-y-2 mt-4">
