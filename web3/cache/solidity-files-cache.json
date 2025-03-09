@@ -653,8 +653,9 @@
       "contentHash": "0c6ceb230a46ccc995e6c781f3a801ab",
       "sourceName": "contracts/PatientDataManagement.sol",
       "solcConfig": {
-        "version": "0.8.7",
+        "version": "0.8.23",
         "settings": {
+          "evmVersion": "paris",
           "optimizer": {
             "enabled": false,
             "runs": 200
@@ -683,13 +684,14 @@
         "PatientDataManagement"
       ]
     },
-    "C:\\Users\\hp\\Desktop\\GlucoTrackr\\web3\\contracts\\BookStore.sol": {
-      "lastModificationDate": 1741257969543,
-      "contentHash": "659096923ac1250e3e1ed000f5b7d876",
-      "sourceName": "contracts/BookStore.sol",
+    "C:\\Users\\hp\\Desktop\\GlucoTrackr\\web3\\contracts\\DoctorManagement.sol": {
+      "lastModificationDate": 1741440661958,
+      "contentHash": "04adcfec450143e49e0f76f172f59d5e",
+      "sourceName": "contracts/DoctorManagement.sol",
       "solcConfig": {
-        "version": "0.8.7",
+        "version": "0.8.23",
         "settings": {
+          "evmVersion": "paris",
           "optimizer": {
             "enabled": false,
             "runs": 200
@@ -715,16 +717,18 @@
         "^0.8.0"
       ],
       "artifacts": [
-        "BookStore"
+        "DoctorManagement",
+        "IPatientDataManagement"
       ]
     },
-    "C:\\Users\\hp\\Desktop\\GlucoTrackr\\web3\\contracts\\Boolean.sol": {
-      "lastModificationDate": 1741257989007,
-      "contentHash": "fdfc7e83eca13b57baa7c231be21d4a8",
-      "sourceName": "contracts/Boolean.sol",
+    "C:\\Users\\hp\\Desktop\\GlucoTrackr\\web3\\contracts\\ResearcherManagement.sol": {
+      "lastModificationDate": 1741440258972,
+      "contentHash": "3e3a7625dbc18f02260a615b1f4d18c7",
+      "sourceName": "contracts/ResearcherManagement.sol",
       "solcConfig": {
-        "version": "0.8.7",
+        "version": "0.8.23",
         "settings": {
+          "evmVersion": "paris",
           "optimizer": {
             "enabled": false,
             "runs": 200
@@ -747,326 +751,11 @@
       },
       "imports": [],
       "versionPragmas": [
-        "^0.8.7"
+        "^0.8.0"
       ],
       "artifacts": [
-        "Boolean"
-      ]
-    },
-    "C:\\Users\\hp\\Desktop\\GlucoTrackr\\web3\\contracts\\ErrorHandling.sol": {
-      "lastModificationDate": 1741258003938,
-      "contentHash": "3adc29e917818517e571a188f0bc25b3",
-      "sourceName": "contracts/ErrorHandling.sol",
-      "solcConfig": {
-        "version": "0.8.7",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.7"
-      ],
-      "artifacts": [
-        "ErrorHandling"
-      ]
-    },
-    "C:\\Users\\hp\\Desktop\\GlucoTrackr\\web3\\contracts\\Events.sol": {
-      "lastModificationDate": 1741258011203,
-      "contentHash": "b3097d99a5dfc497da74617f1c6e12b0",
-      "sourceName": "contracts/Events.sol",
-      "solcConfig": {
-        "version": "0.8.7",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.7"
-      ],
-      "artifacts": [
-        "Events"
-      ]
-    },
-    "C:\\Users\\hp\\Desktop\\GlucoTrackr\\web3\\contracts\\Example.sol": {
-      "lastModificationDate": 1741258023924,
-      "contentHash": "a480685761ea8b14fe24cb453a0bac9e",
-      "sourceName": "contracts/Example.sol",
-      "solcConfig": {
-        "version": "0.8.7",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.7"
-      ],
-      "artifacts": [
-        "Example"
-      ]
-    },
-    "C:\\Users\\hp\\Desktop\\GlucoTrackr\\web3\\contracts\\GetNumber.sol": {
-      "lastModificationDate": 1741258038459,
-      "contentHash": "540840b928dba2851e5426a2660c7713",
-      "sourceName": "contracts/GetNumber.sol",
-      "solcConfig": {
-        "version": "0.8.7",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.7"
-      ],
-      "artifacts": [
-        "GetNumber"
-      ]
-    },
-    "C:\\Users\\hp\\Desktop\\GlucoTrackr\\web3\\contracts\\Inheritance.sol": {
-      "lastModificationDate": 1741258115350,
-      "contentHash": "a8093d90f27bfae6ff49afd86003ac14",
-      "sourceName": "contracts/Inheritance.sol",
-      "solcConfig": {
-        "version": "0.8.7",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.7"
-      ],
-      "artifacts": [
-        "Child",
-        "Inheritance"
-      ]
-    },
-    "C:\\Users\\hp\\Desktop\\GlucoTrackr\\web3\\contracts\\Mapping.sol": {
-      "lastModificationDate": 1741258061866,
-      "contentHash": "33b6013c4dc516abfd20f12cc8cef598",
-      "sourceName": "contracts/Mapping.sol",
-      "solcConfig": {
-        "version": "0.8.7",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.7"
-      ],
-      "artifacts": [
-        "Mapping"
-      ]
-    },
-    "C:\\Users\\hp\\Desktop\\GlucoTrackr\\web3\\contracts\\String.sol": {
-      "lastModificationDate": 1741257807067,
-      "contentHash": "f4138bbeb5cb14d30a3b904aecfc6376",
-      "sourceName": "contracts/String.sol",
-      "solcConfig": {
-        "version": "0.8.7",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.7"
-      ],
-      "artifacts": [
-        "String"
-      ]
-    },
-    "C:\\Users\\hp\\Desktop\\GlucoTrackr\\web3\\contracts\\Uint.sol": {
-      "lastModificationDate": 1741258080613,
-      "contentHash": "cf163f84f25c44dc245eeeea145caeb5",
-      "sourceName": "contracts/Uint.sol",
-      "solcConfig": {
-        "version": "0.8.7",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.7"
-      ],
-      "artifacts": [
-        "Uint"
-      ]
-    },
-    "C:\\Users\\hp\\Desktop\\GlucoTrackr\\web3\\contracts\\Modifiers.sol": {
-      "lastModificationDate": 1741258724847,
-      "contentHash": "008b8a1bfb94e751284d3763fc193cab",
-      "sourceName": "contracts/Modifiers.sol",
-      "solcConfig": {
-        "version": "0.8.7",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.7"
-      ],
-      "artifacts": [
-        "Modifiers"
+        "IPatientDataManagement",
+        "ResearcherManagement"
       ]
     }
   }

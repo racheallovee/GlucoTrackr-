@@ -70,57 +70,25 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Strings__factory>;
     getContractFactory(
-      name: "BookStore",
+      name: "DoctorManagement",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.BookStore__factory>;
+    ): Promise<Contracts.DoctorManagement__factory>;
     getContractFactory(
-      name: "Boolean",
+      name: "IPatientDataManagement",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Boolean__factory>;
-    getContractFactory(
-      name: "ErrorHandling",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ErrorHandling__factory>;
-    getContractFactory(
-      name: "Events",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Events__factory>;
-    getContractFactory(
-      name: "Example",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Example__factory>;
-    getContractFactory(
-      name: "GetNumber",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.GetNumber__factory>;
-    getContractFactory(
-      name: "Child",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Child__factory>;
-    getContractFactory(
-      name: "Inheritance",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Inheritance__factory>;
-    getContractFactory(
-      name: "Mapping",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Mapping__factory>;
-    getContractFactory(
-      name: "Modifiers",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Modifiers__factory>;
+    ): Promise<Contracts.IPatientDataManagement__factory>;
     getContractFactory(
       name: "PatientDataManagement",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.PatientDataManagement__factory>;
     getContractFactory(
-      name: "String",
+      name: "IPatientDataManagement",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.String__factory>;
+    ): Promise<Contracts.IPatientDataManagement__factory>;
     getContractFactory(
-      name: "Uint",
+      name: "ResearcherManagement",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Uint__factory>;
+    ): Promise<Contracts.ResearcherManagement__factory>;
 
     getContractAt(
       name: "IERC1155Errors",
@@ -193,70 +161,30 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.Strings>;
     getContractAt(
-      name: "BookStore",
+      name: "DoctorManagement",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.BookStore>;
+    ): Promise<Contracts.DoctorManagement>;
     getContractAt(
-      name: "Boolean",
+      name: "IPatientDataManagement",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.Boolean>;
-    getContractAt(
-      name: "ErrorHandling",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.ErrorHandling>;
-    getContractAt(
-      name: "Events",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.Events>;
-    getContractAt(
-      name: "Example",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.Example>;
-    getContractAt(
-      name: "GetNumber",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.GetNumber>;
-    getContractAt(
-      name: "Child",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.Child>;
-    getContractAt(
-      name: "Inheritance",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.Inheritance>;
-    getContractAt(
-      name: "Mapping",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.Mapping>;
-    getContractAt(
-      name: "Modifiers",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.Modifiers>;
+    ): Promise<Contracts.IPatientDataManagement>;
     getContractAt(
       name: "PatientDataManagement",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.PatientDataManagement>;
     getContractAt(
-      name: "String",
+      name: "IPatientDataManagement",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.String>;
+    ): Promise<Contracts.IPatientDataManagement>;
     getContractAt(
-      name: "Uint",
+      name: "ResearcherManagement",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.Uint>;
+    ): Promise<Contracts.ResearcherManagement>;
 
     deployContract(
       name: "IERC1155Errors",
@@ -315,57 +243,25 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Strings>;
     deployContract(
-      name: "BookStore",
+      name: "DoctorManagement",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.BookStore>;
+    ): Promise<Contracts.DoctorManagement>;
     deployContract(
-      name: "Boolean",
+      name: "IPatientDataManagement",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Boolean>;
-    deployContract(
-      name: "ErrorHandling",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.ErrorHandling>;
-    deployContract(
-      name: "Events",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Events>;
-    deployContract(
-      name: "Example",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Example>;
-    deployContract(
-      name: "GetNumber",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.GetNumber>;
-    deployContract(
-      name: "Child",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Child>;
-    deployContract(
-      name: "Inheritance",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Inheritance>;
-    deployContract(
-      name: "Mapping",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Mapping>;
-    deployContract(
-      name: "Modifiers",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Modifiers>;
+    ): Promise<Contracts.IPatientDataManagement>;
     deployContract(
       name: "PatientDataManagement",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.PatientDataManagement>;
     deployContract(
-      name: "String",
+      name: "IPatientDataManagement",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.String>;
+    ): Promise<Contracts.IPatientDataManagement>;
     deployContract(
-      name: "Uint",
+      name: "ResearcherManagement",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Uint>;
+    ): Promise<Contracts.ResearcherManagement>;
 
     deployContract(
       name: "IERC1155Errors",
@@ -438,70 +334,30 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Strings>;
     deployContract(
-      name: "BookStore",
+      name: "DoctorManagement",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.BookStore>;
+    ): Promise<Contracts.DoctorManagement>;
     deployContract(
-      name: "Boolean",
+      name: "IPatientDataManagement",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Boolean>;
-    deployContract(
-      name: "ErrorHandling",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.ErrorHandling>;
-    deployContract(
-      name: "Events",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Events>;
-    deployContract(
-      name: "Example",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Example>;
-    deployContract(
-      name: "GetNumber",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.GetNumber>;
-    deployContract(
-      name: "Child",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Child>;
-    deployContract(
-      name: "Inheritance",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Inheritance>;
-    deployContract(
-      name: "Mapping",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Mapping>;
-    deployContract(
-      name: "Modifiers",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Modifiers>;
+    ): Promise<Contracts.IPatientDataManagement>;
     deployContract(
       name: "PatientDataManagement",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.PatientDataManagement>;
     deployContract(
-      name: "String",
+      name: "IPatientDataManagement",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.String>;
+    ): Promise<Contracts.IPatientDataManagement>;
     deployContract(
-      name: "Uint",
+      name: "ResearcherManagement",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Uint>;
+    ): Promise<Contracts.ResearcherManagement>;
 
     // default types
     getContractFactory(
