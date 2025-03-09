@@ -43,6 +43,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => subscription.unsubscribe();
   }, []);
 
+  const navigateBasedOnUserType = (user: User | null) => {
+    if (!user) return;
+    
+    // Get user type from metadata if available
+    const userType = user.user_metadata?.user_type || "patient";
+    
+    switch(userType.toLowerCase()) {
+      case "doctor":
+        navigate("/doctor-dashboard");
+        break;
+      case "researcher":
+        navigate("/researcher-dashboard");
+        break;
+      default:
+        navigate("/patient-dashboard");
+        break;
+    }
+  };
+
   const signUp = async (email: string, password: string, userData: any) => {
     try {
       const { error } = await supabase.auth.signUp({
@@ -80,7 +99,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signIn = async (email: string, password: string) => {
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
@@ -99,7 +118,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         description: "You have successfully logged in.",
       });
       
-      navigate("/");
+      navigateBasedOnUserType(data.user);
       return { error: null };
     } catch (error: any) {
       toast({

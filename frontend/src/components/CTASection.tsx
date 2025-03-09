@@ -4,11 +4,13 @@ import { motion } from "framer-motion";
 import { ChevronRight, Shield, Users, Star } from "lucide-react";
 import FeatureBadge from "./FeatureBadge";
 import WaitlistModal from "./WaitlistModal";
+import ContactSupportModal from "./ContactSupportModal";
 import { Link } from "react-router-dom";
 
 const CTASection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [showWaitlistModal, setShowWaitlistModal] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -73,7 +75,7 @@ const CTASection = () => {
               </button>
               
               <Link
-                to="/patient-blockchain"
+                to="/login"
                 className="btn-secondary flex items-center justify-center py-4 text-lg group"
               >
                 Try Blockchain Features
@@ -81,15 +83,28 @@ const CTASection = () => {
               </Link>
             </motion.div>
 
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isLoaded ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="text-sm text-gray-500 mt-4 flex items-center justify-center"
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6"
             >
-              <Shield size={16} className="mr-2" />
-              No credit card required. Your data is 100% secure.
-            </motion.p>
+              <motion.p
+                className="text-sm text-gray-500 flex items-center justify-center"
+                whileHover={{ scale: 1.05 }}
+              >
+                <Shield size={16} className="mr-2" />
+                No credit card required. Your data is 100% secure.
+              </motion.p>
+              
+              <button
+                onClick={() => setShowContactModal(true)}
+                className="text-sm text-glucotrack-blue hover:underline flex items-center"
+              >
+                <Users size={16} className="mr-2" />
+                Contact Support
+              </button>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }}
@@ -120,6 +135,12 @@ const CTASection = () => {
       <WaitlistModal 
         isOpen={showWaitlistModal}
         onClose={() => setShowWaitlistModal(false)}
+      />
+      
+      {/* Contact Support Modal */}
+      <ContactSupportModal 
+        isOpen={showContactModal}
+        onClose={() => setShowContactModal(false)}
       />
     </section>
   );

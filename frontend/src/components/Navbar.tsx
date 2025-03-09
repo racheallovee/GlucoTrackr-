@@ -1,13 +1,18 @@
+
 import { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
+import ContactSupportModal from "./ContactSupportModal";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
   const controls = useAnimation();
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,6 +43,28 @@ const Navbar = () => {
     }
   };
 
+  const navigateToDashboard = () => {
+    if (!user) {
+      navigate("/login");
+      return;
+    }
+
+    // Get user type from metadata if available
+    const userType = user?.user_metadata?.user_type || "patient";
+    
+    switch(userType.toLowerCase()) {
+      case "doctor":
+        navigate("/doctor-dashboard");
+        break;
+      case "researcher":
+        navigate("/researcher-dashboard");
+        break;
+      default:
+        navigate("/patient-dashboard");
+        break;
+    }
+  };
+
   return (
     <motion.nav
       className={`fixed ${
@@ -65,43 +92,54 @@ const Navbar = () => {
           <div className="hidden md:flex items-center justify-center space-x-8">
             <div
               onClick={() => scrollToSection("features")}
-              className="cursor-pointer"
+              className="cursor-pointer hover:text-glucotrack-blue transition-colors"
             >
               Features
             </div>
             <div
               onClick={() => scrollToSection("why-choose-us")}
-              className="cursor-pointer"
+              className="cursor-pointer hover:text-glucotrack-blue transition-colors"
             >
               About
             </div>
             <div
-              onClick={() => scrollToSection("waitlist")}
-              className="cursor-pointer"
+              onClick={() => setShowContactModal(true)}
+              className="cursor-pointer hover:text-glucotrack-blue transition-colors"
             >
-              CTA
+              Support
             </div>
             <div
               onClick={() => scrollToSection("faq")}
-              className="cursor-pointer"
+              className="cursor-pointer hover:text-glucotrack-blue transition-colors"
             >
               FAQs
             </div>
           </div>
 
           <div className="hidden md:flex items-center space-x-3">
-            <Link
-              to="/login"
-              className="px-4 py-2 rounded-md bg-glucotrack-blue/10 text-glucotrack-blue"
-            >
-              Log in
-            </Link>
-            <Link
-              to="/signup"
-              className="px-4 py-2 rounded-md bg-glucotrack-blue text-white"
-            >
-              Sign up
-            </Link>
+            {user ? (
+              <button
+                onClick={navigateToDashboard}
+                className="px-4 py-2 rounded-md bg-glucotrack-blue text-white"
+              >
+                Dashboard
+              </button>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="px-4 py-2 rounded-md bg-glucotrack-blue/10 text-glucotrack-blue hover:bg-glucotrack-blue/20 transition-colors"
+                >
+                  Log in
+                </Link>
+                <Link
+                  to="/signup"
+                  className="px-4 py-2 rounded-md bg-glucotrack-blue text-white hover:bg-glucotrack-blue/90 transition-colors"
+                >
+                  Sign up
+                </Link>
+              </>
+            )}
           </div>
 
           <button className="md:hidden" onClick={toggleMenu}>
@@ -135,10 +173,13 @@ const Navbar = () => {
                 About
               </div>
               <div
-                onClick={() => scrollToSection("waitlist")}
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  setShowContactModal(true);
+                }}
                 className="py-4 cursor-pointer"
               >
-                CTA
+                Support
               </div>
               <div
                 onClick={() => scrollToSection("faq")}
@@ -147,23 +188,45 @@ const Navbar = () => {
                 FAQs
               </div>
               <div className="flex flex-col space-y-2 mt-4">
-                <Link
-                  to="/login"
-                  className="px-4 py-2 rounded-md bg-glucotrack-blue/10 text-glucotrack-blue text-center"
-                >
-                  Log in
-                </Link>
-                <Link
-                  to="/signup"
-                  className="px-4 py-2 rounded-md bg-glucotrack-blue text-white text-center"
-                >
-                  Sign up
-                </Link>
+                {user ? (
+                  <button
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      navigateToDashboard();
+                    }}
+                    className="px-4 py-2 rounded-md bg-glucotrack-blue text-white text-center"
+                  >
+                    Dashboard
+                  </button>
+                ) : (
+                  <>
+                    <Link
+                      to="/login"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="px-4 py-2 rounded-md bg-glucotrack-blue/10 text-glucotrack-blue text-center"
+                    >
+                      Log in
+                    </Link>
+                    <Link
+                      to="/signup"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="px-4 py-2 rounded-md bg-glucotrack-blue text-white text-center"
+                    >
+                      Sign up
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </motion.div>
         )}
       </div>
+
+      {/* Contact Support Modal */}
+      <ContactSupportModal 
+        isOpen={showContactModal}
+        onClose={() => setShowContactModal(false)}
+      />
     </motion.nav>
   );
 };

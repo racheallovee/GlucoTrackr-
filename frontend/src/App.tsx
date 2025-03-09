@@ -11,6 +11,9 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import UserTypePage from "./pages/UserTypePage";
 import PatientBlockchain from "./pages/PatientBlockchain";
+import PatientDashboard from "./pages/PatientDashboard";
+import DoctorDashboard from "./pages/DoctorDashboard";
+import ResearcherDashboard from "./pages/ResearcherDashboard";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -34,6 +37,30 @@ const App = () => (
                 element={
                   <ProtectedRoute>
                     <PatientBlockchain />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/patient-dashboard" 
+                element={
+                  <ProtectedRoute>
+                    <PatientDashboard />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/doctor-dashboard" 
+                element={
+                  <ProtectedRoute>
+                    <DoctorDashboard />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/researcher-dashboard" 
+                element={
+                  <ProtectedRoute>
+                    <ResearcherDashboard />
                   </ProtectedRoute>
                 } 
               />

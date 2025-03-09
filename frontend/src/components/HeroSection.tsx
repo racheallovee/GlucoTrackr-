@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
@@ -18,8 +19,8 @@ const HeroSection = () => {
     setIsLoaded(true);
   }, []);
 
-  const navigateToUserType = (type: string) => {
-    navigate(`/user-type?type=${type}`);
+  const navigateToLogin = () => {
+    navigate('/login');
   };
 
   return (
@@ -77,7 +78,7 @@ const HeroSection = () => {
                 <motion.button
                   whileHover={{ y: -3 }}
                   whileTap={{ y: 2 }}
-                  onClick={() => navigateToUserType("patients")}
+                  onClick={navigateToLogin}
                   className="btn-primary group"
                 >
                   Get Started Now
@@ -92,7 +93,7 @@ const HeroSection = () => {
                 <motion.button
                   whileHover={{ y: -3 }}
                   whileTap={{ y: 2 }}
-                  onClick={() => navigateToUserType("doctors")}
+                  onClick={() => navigate('/login')}
                   className="btn-secondary"
                 >
                   For Doctors
@@ -107,7 +108,7 @@ const HeroSection = () => {
                 <motion.button
                   whileHover={{ y: -3 }}
                   whileTap={{ y: 2 }}
-                  onClick={() => navigateToUserType("researchers")}
+                  onClick={() => navigate('/login')}
                   className="btn-secondary"
                 >
                   For Researchers
