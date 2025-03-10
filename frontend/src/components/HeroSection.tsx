@@ -18,6 +18,10 @@ const HeroSection = () => {
     setIsLoaded(true);
   }, []);
 
+  const navigateToLogin = () => {
+    navigate("/login");
+  };
+
   const navigateToUserType = (type: string) => {
     navigate(`/user-type?type=${type}`);
   };
@@ -80,7 +84,7 @@ const HeroSection = () => {
                   onClick={() => navigateToUserType("patients")}
                   className="btn-primary group"
                 >
-                  Get Started Now
+                  For Patients
                   <ChevronRight className="ml-1 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </motion.button>
               </motion.div>

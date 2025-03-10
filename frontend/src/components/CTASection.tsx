@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ChevronRight, Shield, Users, Star } from "lucide-react";
@@ -71,14 +70,14 @@ const CTASection = () => {
                 Join the Waitlist
                 <ChevronRight className="ml-1 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
               </button>
-              
-              <Link
+
+              {/* <Link
                 to="/patient-blockchain"
                 className="btn-secondary flex items-center justify-center py-4 text-lg group"
               >
                 Try Blockchain Features
                 <ChevronRight className="ml-1 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
+              </Link> */}
             </motion.div>
 
             <motion.p
@@ -117,7 +116,7 @@ const CTASection = () => {
       </div>
 
       {/* Waitlist Modal */}
-      <WaitlistModal 
+      <WaitlistModal
         isOpen={showWaitlistModal}
         onClose={() => setShowWaitlistModal(false)}
       />
