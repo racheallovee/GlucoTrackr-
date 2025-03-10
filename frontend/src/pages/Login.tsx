@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
@@ -24,13 +23,13 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     const { error } = await signIn(email, password);
-    
+
     if (!error) {
       navigate("/");
     }
-    
+
     setIsSubmitting(false);
   };
 
@@ -45,7 +44,7 @@ const Login = () => {
       >
         {/* Back Button */}
         <Link to="/" className="absolute top-8 left-8">
-          <motion.div 
+          <motion.div
             whileHover={{ x: -3 }}
             className="flex items-center text-gray-500 hover:text-glucotrack-blue transition-colors"
           >
@@ -67,14 +66,21 @@ const Login = () => {
               Gluco<span className="text-glucotrack-blue">Trackr</span>
             </span>
           </Link>
-          <h1 className="text-3xl font-bold text-glucotrack-dark-gray">Welcome Back</h1>
-          <p className="text-gray-500 mt-2">Log in to your GlucoTrackr account</p>
+          <h1 className="text-3xl font-bold text-glucotrack-dark-gray">
+            Welcome Back
+          </h1>
+          <p className="text-gray-500 mt-2">
+            Log in to your GlucoTrackr account
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
             <div className="relative">
-              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email">
+              <label
+                className="block text-sm font-medium text-gray-700 mb-1"
+                htmlFor="email"
+              >
                 Email
               </label>
               <div className="relative">
@@ -92,9 +98,12 @@ const Login = () => {
                 />
               </div>
             </div>
-            
+
             <div className="relative">
-              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="password">
+              <label
+                className="block text-sm font-medium text-gray-700 mb-1"
+                htmlFor="password"
+              >
                 Password
               </label>
               <div className="relative">
@@ -130,12 +139,18 @@ const Login = () => {
                 type="checkbox"
                 className="h-4 w-4 text-glucotrack-blue focus:ring-glucotrack-blue border-gray-300 rounded"
               />
-              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
+              <label
+                htmlFor="remember-me"
+                className="ml-2 block text-sm text-gray-700"
+              >
                 Remember me
               </label>
             </div>
             <div className="text-sm">
-              <a href="#" className="font-medium text-glucotrack-blue hover:text-glucotrack-blue/80">
+              <a
+                href="#"
+                className="font-medium text-glucotrack-blue hover:text-glucotrack-blue/80"
+              >
                 Forgot password?
               </a>
             </div>
@@ -150,9 +165,25 @@ const Login = () => {
               className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-glucotrack-blue hover:bg-glucotrack-blue/90 focus:outline-none transition-colors duration-300"
             >
               {isSubmitting ? (
-                <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                <svg
+                  className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
                 </svg>
               ) : (
                 <LogIn size={18} className="mr-2" />
@@ -165,7 +196,10 @@ const Login = () => {
         <div className="mt-8 text-center">
           <p className="text-sm text-gray-600">
             Don't have an account?{" "}
-            <Link to="/signup" className="font-medium text-glucotrack-blue hover:text-glucotrack-blue/80">
+            <Link
+              to="/signup"
+              className="font-medium text-glucotrack-blue hover:text-glucotrack-blue/80"
+            >
               Sign up
             </Link>
           </p>
