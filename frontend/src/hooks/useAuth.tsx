@@ -8,6 +8,7 @@ import { Session, User } from "@supabase/supabase-js";
 interface AuthContextType {
   session: Session | null;
   user: User | null;
+  userRole: string | null;
   loading: boolean;
   signUp: (email: string, password: string, userData: any) => Promise<{ error: any }>;
   signIn: (email: string, password: string) => Promise<{ error: any }>;
@@ -19,29 +20,80 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [user, setUser] = useState<User | null>(null);
+  const [userRole, setUserRole] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
   const navigate = useNavigate();
 
+  const fetchUserRole = async (userId: string) => {
+    try {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("user_type")
+        .eq("id", userId)
+        .single();
+
+      if (error) {
+        console.error("Error fetching user role:", error);
+        return null;
+      }
+
+      return data?.user_type || null;
+    } catch (error) {
+      console.error("Error in fetchUserRole:", error);
+      return null;
+    }
+  };
+
   useEffect(() => {
     // Check active session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session);
-      setUser(session?.user ?? null);
+      
+      if (session?.user) {
+        setUser(session.user);
+        const role = await fetchUserRole(session.user.id);
+        setUserRole(role);
+      } else {
+        setUser(null);
+        setUserRole(null);
+      }
+      
       setLoading(false);
     });
 
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
+      async (_event, session) => {
         setSession(session);
-        setUser(session?.user ?? null);
+        
+        if (session?.user) {
+          setUser(session.user);
+          const role = await fetchUserRole(session.user.id);
+          setUserRole(role);
+        } else {
+          setUser(null);
+          setUserRole(null);
+        }
+        
         setLoading(false);
       }
     );
 
     return () => subscription.unsubscribe();
   }, []);
+
+  const getDashboardRoute = (role: string | null): string => {
+    switch (role?.toLowerCase()) {
+      case "doctor":
+        return "/doctor-dashboard";
+      case "researcher":
+        return "/researcher-dashboard";
+      case "patient":
+      default:
+        return "/patient-dashboard";
+    }
+  };
 
   const signUp = async (email: string, password: string, userData: any) => {
     try {
@@ -99,7 +151,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         description: "You have successfully logged in.",
       });
       
-      navigate("/");
+      // User role will be updated through the auth state change listener
+      // and then we'll redirect in the Login component
       return { error: null };
     } catch (error: any) {
       toast({
@@ -121,7 +174,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ session, user, loading, signUp, signIn, signOut }}>
+    <AuthContext.Provider value={{ session, user, userRole, loading, signUp, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );

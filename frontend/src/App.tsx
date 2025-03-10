@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -34,7 +35,7 @@ const App = () => (
               <Route
                 path="/patient-blockchain"
                 element={
-                  <ProtectedRoute>
+                  <ProtectedRoute requiredRole="patient">
                     <PatientBlockchain />
                   </ProtectedRoute>
                 }
@@ -42,7 +43,7 @@ const App = () => (
               <Route
                 path="/patient-dashboard"
                 element={
-                  <ProtectedRoute>
+                  <ProtectedRoute requiredRole="patient">
                     <PatientDashboard />
                   </ProtectedRoute>
                 }
@@ -50,7 +51,7 @@ const App = () => (
               <Route
                 path="/doctor-dashboard"
                 element={
-                  <ProtectedRoute>
+                  <ProtectedRoute requiredRole="doctor">
                     <DoctorDashboard />
                   </ProtectedRoute>
                 }
@@ -58,7 +59,7 @@ const App = () => (
               <Route
                 path="/researcher-dashboard"
                 element={
-                  <ProtectedRoute>
+                  <ProtectedRoute requiredRole="researcher">
                     <ResearcherDashboard />
                   </ProtectedRoute>
                 }

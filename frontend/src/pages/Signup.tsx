@@ -10,6 +10,7 @@ const Signup = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userType, setUserType] = useState("patient"); // Default user type
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const Signup = () => {
     
     const userData = {
       full_name: fullName,
-      user_type: "patient" // Default user type
+      user_type: userType // Use the selected user type
     };
     
     const { error } = await signUp(email, password, userData);
@@ -148,6 +149,48 @@ const Signup = () => {
                 </div>
               </div>
               <p className="mt-1 text-xs text-gray-500">Password must be at least 8 characters</p>
+            </div>
+
+            {/* User Type Selection */}
+            <div className="relative">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                I am a:
+              </label>
+              <div className="grid grid-cols-3 gap-3">
+                <button
+                  type="button"
+                  onClick={() => setUserType("patient")}
+                  className={`py-2 px-4 rounded-lg border ${
+                    userType === "patient"
+                      ? "bg-glucotrack-blue text-white border-glucotrack-blue"
+                      : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"
+                  }`}
+                >
+                  Patient
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setUserType("doctor")}
+                  className={`py-2 px-4 rounded-lg border ${
+                    userType === "doctor"
+                      ? "bg-glucotrack-blue text-white border-glucotrack-blue"
+                      : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"
+                  }`}
+                >
+                  Doctor
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setUserType("researcher")}
+                  className={`py-2 px-4 rounded-lg border ${
+                    userType === "researcher"
+                      ? "bg-glucotrack-blue text-white border-glucotrack-blue"
+                      : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"
+                  }`}
+                >
+                  Researcher
+                </button>
+              </div>
             </div>
           </div>
 

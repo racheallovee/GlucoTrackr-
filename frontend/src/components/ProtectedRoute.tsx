@@ -6,10 +6,11 @@ import { Loader2 } from "lucide-react";
 
 interface ProtectedRouteProps {
   children: ReactNode;
+  requiredRole?: string | string[];
 }
 
-const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  const { user, loading } = useAuth();
+const ProtectedRoute = ({ children, requiredRole }: ProtectedRouteProps) => {
+  const { user, userRole, loading } = useAuth();
 
   if (loading) {
     return (
@@ -23,7 +24,31 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     return <Navigate to="/login" replace />;
   }
 
+  // If specific role(s) are required, check if user has the necessary role
+  if (requiredRole) {
+    const requiredRoles = Array.isArray(requiredRole) ? requiredRole : [requiredRole];
+    
+    if (!userRole || !requiredRoles.includes(userRole.toLowerCase())) {
+      // Redirect to their appropriate dashboard based on role
+      const dashboardRoute = getDashboardByRole(userRole || "patient");
+      return <Navigate to={dashboardRoute} replace />;
+    }
+  }
+
   return <>{children}</>;
+};
+
+// Helper function to determine dashboard route based on user role
+const getDashboardByRole = (role: string): string => {
+  switch (role.toLowerCase()) {
+    case "doctor":
+      return "/doctor-dashboard";
+    case "researcher":
+      return "/researcher-dashboard";
+    case "patient":
+    default:
+      return "/patient-dashboard";
+  }
 };
 
 export default ProtectedRoute;

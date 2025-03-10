@@ -1,4 +1,5 @@
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { LogIn, Mail, Lock, ArrowLeft, Eye, EyeOff } from "lucide-react";
@@ -12,11 +13,32 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { signIn, user } = useAuth();
+  const { signIn, user, userRole, loading } = useAuth();
+
+  // Handle redirection based on user role
+  useEffect(() => {
+    if (user && userRole && !loading) {
+      const dashboardRoute = getDashboardByRole(userRole);
+      navigate(dashboardRoute);
+    }
+  }, [user, userRole, loading, navigate]);
+
+  const getDashboardByRole = (role: string): string => {
+    switch (role.toLowerCase()) {
+      case "doctor":
+        return "/doctor-dashboard";
+      case "researcher":
+        return "/researcher-dashboard";
+      case "patient":
+      default:
+        return "/patient-dashboard";
+    }
+  };
 
   // Redirect if already logged in
-  if (user) {
-    navigate("/");
+  if (user && !loading) {
+    const dashboardRoute = getDashboardByRole(userRole || "patient");
+    navigate(dashboardRoute);
     return null;
   }
 
@@ -26,8 +48,8 @@ const Login = () => {
 
     const { error } = await signIn(email, password);
 
-    if (!error) {
-      navigate("/");
+    if (error) {
+      // The error is already handled in the signIn function with a toast
     }
 
     setIsSubmitting(false);
