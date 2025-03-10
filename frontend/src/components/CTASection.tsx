@@ -1,13 +1,14 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Shield, Users, Star } from "lucide-react";
+import { ChevronRight, Shield, Users, Star } from "lucide-react";
 import FeatureBadge from "./FeatureBadge";
-import ContactSupportModal from "./ContactSupportModal";
+import WaitlistModal from "./WaitlistModal";
+import { Link } from "react-router-dom";
 
 const CTASection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [showContactModal, setShowContactModal] = useState(false);
+  const [showWaitlistModal, setShowWaitlistModal] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -16,7 +17,7 @@ const CTASection = () => {
   return (
     <section
       id="waitlist"
-      className="py-16 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden"
+      className="py-20 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden"
     >
       {/* Background elements */}
       <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-blue-100/30 blur-3xl opacity-70"></div>
@@ -31,7 +32,7 @@ const CTASection = () => {
               transition={{ duration: 0.5 }}
               className="mb-8"
             >
-              <FeatureBadge label="Try GlucoTrackr" />
+              <FeatureBadge label="Limited Early Access" />
             </motion.div>
 
             <motion.h2
@@ -40,6 +41,7 @@ const CTASection = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-3xl md:text-4xl lg:text-5xl font-bold text-glucotrack-dark-gray mb-6"
             >
+              Start Your Journey to{" "}
               <span className="text-glucotrack-blue">
                 Better Diabetes Management
               </span>
@@ -59,25 +61,35 @@ const CTASection = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isLoaded ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6"
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="w-full max-w-md flex flex-col sm:flex-row gap-4 justify-center"
             >
-              <motion.p
-                className="text-sm text-gray-500 flex items-center justify-center"
-                whileHover={{ scale: 1.05 }}
-              >
-                <Shield size={16} className="mr-2" />
-                Your data is 100% secure.
-              </motion.p>
-              
               <button
-                onClick={() => setShowContactModal(true)}
-                className="text-sm text-glucotrack-blue hover:underline flex items-center"
+                onClick={() => setShowWaitlistModal(true)}
+                className="btn-primary flex items-center justify-center py-4 text-lg group"
               >
-                <Users size={16} className="mr-2" />
-                Contact Support
+                Join the Waitlist
+                <ChevronRight className="ml-1 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
               </button>
+              
+              <Link
+                to="/patient-blockchain"
+                className="btn-secondary flex items-center justify-center py-4 text-lg group"
+              >
+                Try Blockchain Features
+                <ChevronRight className="ml-1 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
             </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={isLoaded ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-sm text-gray-500 mt-4 flex items-center justify-center"
+            >
+              <Shield size={16} className="mr-2" />
+              No credit card required. Your data is 100% secure.
+            </motion.p>
 
             <motion.div
               initial={{ opacity: 0 }}
@@ -103,11 +115,11 @@ const CTASection = () => {
           </div>
         </div>
       </div>
-      
-      {/* Contact Support Modal */}
-      <ContactSupportModal 
-        isOpen={showContactModal}
-        onClose={() => setShowContactModal(false)}
+
+      {/* Waitlist Modal */}
+      <WaitlistModal 
+        isOpen={showWaitlistModal}
+        onClose={() => setShowWaitlistModal(false)}
       />
     </section>
   );

@@ -21,15 +21,11 @@ const ContactSupportModal = ({ isOpen, onClose }: ContactSupportModalProps) => {
     setIsSubmitting(true);
 
     try {
-      // In a real app, this would be an API call to send an email
-      console.log("Support request:", { 
-        to: "rachealloveo6@gmail.com",
-        from: email,
-        name,
-        message
-      });
+      // In a real app, this would be an API call
+      // For now, we'll simulate sending an email
+      console.log("Support request submitted:", { name, email, message });
       
-      // Simulate API delay
+      // Simulate delay
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       toast({

@@ -10,9 +10,6 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import UserTypePage from "./pages/UserTypePage";
 import PatientBlockchain from "./pages/PatientBlockchain";
-import PatientDashboard from "./pages/PatientDashboard";
-import DoctorDashboard from "./pages/DoctorDashboard";
-import ResearcherDashboard from "./pages/ResearcherDashboard";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 

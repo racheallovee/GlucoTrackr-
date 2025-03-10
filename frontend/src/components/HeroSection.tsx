@@ -1,26 +1,31 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
+  ChevronRight,
   ActivitySquare,
   LineChart,
   Smartphone,
-  ChevronRight,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AppMockup from "./AppMockup";
 import FeatureBadge from "./FeatureBadge";
 
 const HeroSection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoaded(true);
   }, []);
 
+  const navigateToUserType = (type: string) => {
+    navigate(`/user-type?type=${type}`);
+  };
+
   return (
     <section
       id="home"
-      className="relative w-full overflow-hidden bg-gradient-to-b from-white to-blue-50"
+      className="relative w-full overflow-hidden bg-gradient-to-b from-white to-blue-50 "
     >
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-full h-full bg-hero-pattern opacity-70"></div>
@@ -63,38 +68,35 @@ const HeroSection = () => {
               insights, and Web3 integration for a seamless diabetes management
               experience.
             </motion.p>
-
             <div className="flex flex-wrap gap-4 mb-10">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={isLoaded ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <Link to="/signup" className="inline-block">
-                  <motion.button
-                    whileHover={{ y: -3 }}
-                    whileTap={{ y: 2 }}
-                    className="btn-primary group"
-                  >
-                    For Patients
-                    <ChevronRight className="ml-1 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </motion.button>
-                </Link>
+                <motion.button
+                  whileHover={{ y: -3 }}
+                  whileTap={{ y: 2 }}
+                  onClick={() => navigateToUserType("patients")}
+                  className="btn-primary group"
+                >
+                  Get Started Now
+                  <ChevronRight className="ml-1 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </motion.button>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={isLoaded ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <Link to="/login" className="inline-block">
-                  <motion.button
-                    whileHover={{ y: -3 }}
-                    whileTap={{ y: 2 }}
-                    className="btn-secondary"
-                  >
-                    For Doctors
-                  </motion.button>
-                </Link>
+                <motion.button
+                  whileHover={{ y: -3 }}
+                  whileTap={{ y: 2 }}
+                  onClick={() => navigateToUserType("doctors")}
+                  className="btn-secondary"
+                >
+                  For Doctors
+                </motion.button>
               </motion.div>
 
               <motion.div
@@ -102,18 +104,16 @@ const HeroSection = () => {
                 animate={isLoaded ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <Link to="/login" className="inline-block">
-                  <motion.button
-                    whileHover={{ y: -3 }}
-                    whileTap={{ y: 2 }}
-                    className="btn-secondary"
-                  >
-                    For Researchers
-                  </motion.button>
-                </Link>
+                <motion.button
+                  whileHover={{ y: -3 }}
+                  whileTap={{ y: 2 }}
+                  onClick={() => navigateToUserType("researchers")}
+                  className="btn-secondary"
+                >
+                  For Researchers
+                </motion.button>
               </motion.div>
             </div>
-
             <motion.div
               initial={{ opacity: 0 }}
               animate={isLoaded ? { opacity: 1 } : {}}

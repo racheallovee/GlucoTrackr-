@@ -1,16 +1,13 @@
-
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
-import { useAuth } from "@/hooks/useAuth";
-import ContactSupportModal from "./ContactSupportModal";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [showContactModal, setShowContactModal] = useState(false);
-  const { user } = useAuth();
+  const controls = useAnimation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,7 +28,7 @@ const Navbar = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     } else {
-      window.location.href = "/";
+      navigate("/");
       setTimeout(() => {
         const newElement = document.getElementById(sectionId);
         if (newElement) {
@@ -43,13 +40,15 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 w-full ${
+      className={`fixed ${
+        isScrolled ? "top-0" : "top-6"
+      } left-0 right-0 z-50 mx-auto max-w-5xl w-[95%] rounded-xl ${
         isScrolled
-          ? "bg-blue-50/95 backdrop-blur-sm shadow-sm"
-          : "bg-blue-50/90 backdrop-blur-sm"
+          ? "bg-blue-50/95 backdrop-blur-sm shadow-sm py-3"
+          : "bg-blue-50/90 backdrop-blur-sm py-4"
       } transition-all duration-300`}
     >
-      <div className="container mx-auto px-4 py-4">
+      <div className="px-6">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center">
             <motion.div
@@ -66,25 +65,25 @@ const Navbar = () => {
           <div className="hidden md:flex items-center justify-center space-x-8">
             <div
               onClick={() => scrollToSection("features")}
-              className="cursor-pointer hover:text-glucotrack-blue transition-colors"
+              className="cursor-pointer"
             >
               Features
             </div>
             <div
               onClick={() => scrollToSection("why-choose-us")}
-              className="cursor-pointer hover:text-glucotrack-blue transition-colors"
+              className="cursor-pointer"
             >
               About
             </div>
             <div
-              onClick={() => setShowContactModal(true)}
-              className="cursor-pointer hover:text-glucotrack-blue transition-colors"
+              onClick={() => scrollToSection("waitlist")}
+              className="cursor-pointer"
             >
-              Support
+              CTA
             </div>
             <div
               onClick={() => scrollToSection("faq")}
-              className="cursor-pointer hover:text-glucotrack-blue transition-colors"
+              className="cursor-pointer"
             >
               FAQs
             </div>
@@ -93,13 +92,13 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-3">
             <Link
               to="/login"
-              className="px-4 py-2 rounded-md bg-glucotrack-blue/10 text-glucotrack-blue hover:bg-glucotrack-blue/20 transition-colors"
+              className="px-4 py-2 rounded-md bg-glucotrack-blue/10 text-glucotrack-blue"
             >
               Log in
             </Link>
             <Link
               to="/signup"
-              className="px-4 py-2 rounded-md bg-glucotrack-blue text-white hover:bg-glucotrack-blue/90 transition-colors"
+              className="px-4 py-2 rounded-md bg-glucotrack-blue text-white"
             >
               Sign up
             </Link>
@@ -136,13 +135,10 @@ const Navbar = () => {
                 About
               </div>
               <div
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  setShowContactModal(true);
-                }}
+                onClick={() => scrollToSection("waitlist")}
                 className="py-4 cursor-pointer"
               >
-                Support
+                CTA
               </div>
               <div
                 onClick={() => scrollToSection("faq")}
@@ -153,14 +149,12 @@ const Navbar = () => {
               <div className="flex flex-col space-y-2 mt-4">
                 <Link
                   to="/login"
-                  onClick={() => setIsMenuOpen(false)}
                   className="px-4 py-2 rounded-md bg-glucotrack-blue/10 text-glucotrack-blue text-center"
                 >
                   Log in
                 </Link>
                 <Link
                   to="/signup"
-                  onClick={() => setIsMenuOpen(false)}
                   className="px-4 py-2 rounded-md bg-glucotrack-blue text-white text-center"
                 >
                   Sign up
@@ -170,12 +164,6 @@ const Navbar = () => {
           </motion.div>
         )}
       </div>
-
-      {/* Contact Support Modal */}
-      <ContactSupportModal 
-        isOpen={showContactModal}
-        onClose={() => setShowContactModal(false)}
-      />
     </motion.nav>
   );
 };

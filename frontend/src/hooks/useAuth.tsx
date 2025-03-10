@@ -43,34 +43,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => subscription.unsubscribe();
   }, []);
 
-  const navigateBasedOnUserType = (user: User | null) => {
-    if (!user) return;
-    
-    // Get user type from metadata if available
-    const userType = user.user_metadata?.user_type || "patient";
-    
-    switch(userType.toLowerCase()) {
-      case "doctor":
-        navigate("/doctor-dashboard");
-        break;
-      case "researcher":
-        navigate("/researcher-dashboard");
-        break;
-      default:
-        navigate("/patient-dashboard");
-        break;
-    }
-  };
-
   const signUp = async (email: string, password: string, userData: any) => {
     try {
-      // Configure signUp options to send a verification email
       const { error } = await supabase.auth.signUp({
         email,
         password,
         options: {
-          data: userData,
-          emailRedirectTo: window.location.origin + '/login',
+          data: userData
         }
       });
       
@@ -85,7 +64,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       
       toast({
         title: "Account created",
-        description: "Please check your email for a verification link from rachealloveo6@gmail.com. You need to verify your account before logging in.",
+        description: "Please check your email to verify your account.",
       });
       
       return { error: null };
@@ -101,7 +80,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signIn = async (email: string, password: string) => {
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
@@ -115,22 +94,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return { error };
       }
       
-      // Check if email is verified
-      if (!data.user?.email_confirmed_at) {
-        toast({
-          variant: "destructive",
-          title: "Email not verified",
-          description: "Please check your email and verify your account before logging in.",
-        });
-        return { error: new Error("Email not verified") };
-      }
-      
       toast({
         title: "Welcome back",
         description: "You have successfully logged in.",
       });
       
-      navigateBasedOnUserType(data.user);
+      navigate("/");
       return { error: null };
     } catch (error: any) {
       toast({
