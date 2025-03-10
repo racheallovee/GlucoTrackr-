@@ -1,4 +1,3 @@
-
 import { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
@@ -26,8 +25,10 @@ const ProtectedRoute = ({ children, requiredRole }: ProtectedRouteProps) => {
 
   // If specific role(s) are required, check if user has the necessary role
   if (requiredRole) {
-    const requiredRoles = Array.isArray(requiredRole) ? requiredRole : [requiredRole];
-    
+    const requiredRoles = Array.isArray(requiredRole)
+      ? requiredRole
+      : [requiredRole];
+
     if (!userRole || !requiredRoles.includes(userRole.toLowerCase())) {
       // Redirect to their appropriate dashboard based on role
       const dashboardRoute = getDashboardByRole(userRole || "patient");
