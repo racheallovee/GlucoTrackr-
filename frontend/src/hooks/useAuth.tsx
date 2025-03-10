@@ -64,11 +64,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signUp = async (email: string, password: string, userData: any) => {
     try {
+      // Configure signUp options to send a verification email
       const { error } = await supabase.auth.signUp({
         email,
         password,
         options: {
-          data: userData
+          data: userData,
+          emailRedirectTo: window.location.origin + '/login',
         }
       });
       
@@ -83,7 +85,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       
       toast({
         title: "Account created",
-        description: "Please check your email to verify your account.",
+        description: "Please check your email for a verification link from rachealloveo6@gmail.com. You need to verify your account before logging in.",
       });
       
       return { error: null };
@@ -111,6 +113,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           description: error.message,
         });
         return { error };
+      }
+      
+      // Check if email is verified
+      if (!data.user?.email_confirmed_at) {
+        toast({
+          variant: "destructive",
+          title: "Email not verified",
+          description: "Please check your email and verify your account before logging in.",
+        });
+        return { error: new Error("Email not verified") };
       }
       
       toast({

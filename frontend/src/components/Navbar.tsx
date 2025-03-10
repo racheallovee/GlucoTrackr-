@@ -1,8 +1,8 @@
 
 import { useState, useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import ContactSupportModal from "./ContactSupportModal";
 
@@ -10,8 +10,6 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
-  const controls = useAnimation();
-  const navigate = useNavigate();
   const { user } = useAuth();
 
   useEffect(() => {
@@ -33,7 +31,7 @@ const Navbar = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     } else {
-      navigate("/");
+      window.location.href = "/";
       setTimeout(() => {
         const newElement = document.getElementById(sectionId);
         if (newElement) {
@@ -43,39 +41,15 @@ const Navbar = () => {
     }
   };
 
-  const navigateToDashboard = () => {
-    if (!user) {
-      navigate("/login");
-      return;
-    }
-
-    // Get user type from metadata if available
-    const userType = user?.user_metadata?.user_type || "patient";
-    
-    switch(userType.toLowerCase()) {
-      case "doctor":
-        navigate("/doctor-dashboard");
-        break;
-      case "researcher":
-        navigate("/researcher-dashboard");
-        break;
-      default:
-        navigate("/patient-dashboard");
-        break;
-    }
-  };
-
   return (
     <motion.nav
-      className={`fixed ${
-        isScrolled ? "top-0" : "top-6"
-      } left-0 right-0 z-50 mx-auto max-w-5xl w-[95%] rounded-xl ${
+      className={`fixed top-0 left-0 right-0 z-50 w-full ${
         isScrolled
-          ? "bg-blue-50/95 backdrop-blur-sm shadow-sm py-3"
-          : "bg-blue-50/90 backdrop-blur-sm py-4"
+          ? "bg-blue-50/95 backdrop-blur-sm shadow-sm"
+          : "bg-blue-50/90 backdrop-blur-sm"
       } transition-all duration-300`}
     >
-      <div className="px-6">
+      <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center">
             <motion.div
@@ -117,29 +91,18 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-3">
-            {user ? (
-              <button
-                onClick={navigateToDashboard}
-                className="px-4 py-2 rounded-md bg-glucotrack-blue text-white"
-              >
-                Dashboard
-              </button>
-            ) : (
-              <>
-                <Link
-                  to="/login"
-                  className="px-4 py-2 rounded-md bg-glucotrack-blue/10 text-glucotrack-blue hover:bg-glucotrack-blue/20 transition-colors"
-                >
-                  Log in
-                </Link>
-                <Link
-                  to="/signup"
-                  className="px-4 py-2 rounded-md bg-glucotrack-blue text-white hover:bg-glucotrack-blue/90 transition-colors"
-                >
-                  Sign up
-                </Link>
-              </>
-            )}
+            <Link
+              to="/login"
+              className="px-4 py-2 rounded-md bg-glucotrack-blue/10 text-glucotrack-blue hover:bg-glucotrack-blue/20 transition-colors"
+            >
+              Log in
+            </Link>
+            <Link
+              to="/signup"
+              className="px-4 py-2 rounded-md bg-glucotrack-blue text-white hover:bg-glucotrack-blue/90 transition-colors"
+            >
+              Sign up
+            </Link>
           </div>
 
           <button className="md:hidden" onClick={toggleMenu}>
@@ -188,34 +151,20 @@ const Navbar = () => {
                 FAQs
               </div>
               <div className="flex flex-col space-y-2 mt-4">
-                {user ? (
-                  <button
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                      navigateToDashboard();
-                    }}
-                    className="px-4 py-2 rounded-md bg-glucotrack-blue text-white text-center"
-                  >
-                    Dashboard
-                  </button>
-                ) : (
-                  <>
-                    <Link
-                      to="/login"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="px-4 py-2 rounded-md bg-glucotrack-blue/10 text-glucotrack-blue text-center"
-                    >
-                      Log in
-                    </Link>
-                    <Link
-                      to="/signup"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="px-4 py-2 rounded-md bg-glucotrack-blue text-white text-center"
-                    >
-                      Sign up
-                    </Link>
-                  </>
-                )}
+                <Link
+                  to="/login"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="px-4 py-2 rounded-md bg-glucotrack-blue/10 text-glucotrack-blue text-center"
+                >
+                  Log in
+                </Link>
+                <Link
+                  to="/signup"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="px-4 py-2 rounded-md bg-glucotrack-blue text-white text-center"
+                >
+                  Sign up
+                </Link>
               </div>
             </div>
           </motion.div>

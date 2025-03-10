@@ -1,15 +1,12 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ChevronRight, Shield, Users, Star } from "lucide-react";
+import { Shield, Users, Star } from "lucide-react";
 import FeatureBadge from "./FeatureBadge";
-import WaitlistModal from "./WaitlistModal";
 import ContactSupportModal from "./ContactSupportModal";
-import { Link } from "react-router-dom";
 
 const CTASection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [showWaitlistModal, setShowWaitlistModal] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
 
   useEffect(() => {
@@ -19,7 +16,7 @@ const CTASection = () => {
   return (
     <section
       id="waitlist"
-      className="py-20 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden"
+      className="py-16 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden"
     >
       {/* Background elements */}
       <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-blue-100/30 blur-3xl opacity-70"></div>
@@ -34,7 +31,7 @@ const CTASection = () => {
               transition={{ duration: 0.5 }}
               className="mb-8"
             >
-              <FeatureBadge label="Limited Early Access" />
+              <FeatureBadge label="Try GlucoTrackr" />
             </motion.div>
 
             <motion.h2
@@ -43,7 +40,6 @@ const CTASection = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-3xl md:text-4xl lg:text-5xl font-bold text-glucotrack-dark-gray mb-6"
             >
-              Start Your Journey to{" "}
               <span className="text-glucotrack-blue">
                 Better Diabetes Management
               </span>
@@ -63,29 +59,6 @@ const CTASection = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isLoaded ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="w-full max-w-md flex flex-col sm:flex-row gap-4 justify-center"
-            >
-              <button
-                onClick={() => setShowWaitlistModal(true)}
-                className="btn-primary flex items-center justify-center py-4 text-lg group"
-              >
-                Join the Waitlist
-                <ChevronRight className="ml-1 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </button>
-              
-              <Link
-                to="/login"
-                className="btn-secondary flex items-center justify-center py-4 text-lg group"
-              >
-                Try Blockchain Features
-                <ChevronRight className="ml-1 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isLoaded ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.4 }}
               className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6"
             >
@@ -94,7 +67,7 @@ const CTASection = () => {
                 whileHover={{ scale: 1.05 }}
               >
                 <Shield size={16} className="mr-2" />
-                No credit card required. Your data is 100% secure.
+                Your data is 100% secure.
               </motion.p>
               
               <button
@@ -130,12 +103,6 @@ const CTASection = () => {
           </div>
         </div>
       </div>
-
-      {/* Waitlist Modal */}
-      <WaitlistModal 
-        isOpen={showWaitlistModal}
-        onClose={() => setShowWaitlistModal(false)}
-      />
       
       {/* Contact Support Modal */}
       <ContactSupportModal 
