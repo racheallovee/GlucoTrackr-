@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
@@ -64,7 +63,7 @@ const HeroSection = () => {
               insights, and Web3 integration for a seamless diabetes management
               experience.
             </motion.p>
-            
+
             <div className="flex flex-wrap gap-4 mb-10">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -77,7 +76,7 @@ const HeroSection = () => {
                     whileTap={{ y: 2 }}
                     className="btn-primary group"
                   >
-                    Get Started Now
+                    For Patients
                     <ChevronRight className="ml-1 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </motion.button>
                 </Link>
@@ -114,7 +113,7 @@ const HeroSection = () => {
                 </Link>
               </motion.div>
             </div>
-            
+
             <motion.div
               initial={{ opacity: 0 }}
               animate={isLoaded ? { opacity: 1 } : {}}
