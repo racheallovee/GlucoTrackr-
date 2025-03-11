@@ -15,8 +15,8 @@ const Footer = () => {
   return (
     <footer className="bg-glucotrack-dark-gray text-white py-8 relative overflow-hidden">
       {/* Subtle background elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-glucotrack-blue/5 blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-glucotrack-blue/5 blur-3xl"></div>
+      <div className="absolute top-0 right-0 w-96 h-9 rounded-full bg-glucotrack-blue/5 blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-96  rounded-full bg-glucotrack-blue/5 blur-3xl"></div>
       <div className="container mx-auto px-6">
         <div className="flex flex-col items-center text-center">
           {/* Branding Section */}
