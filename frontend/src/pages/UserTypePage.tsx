@@ -12,6 +12,7 @@ import {
   User,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
 
 type UserType = "patients" | "doctors" | "researchers";
 
@@ -19,6 +20,7 @@ const UserTypePage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { signIn } = useAuth();
   const [userType, setUserType] = useState<UserType>("patients");
   const [isSignUp, setIsSignUp] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,22 +40,52 @@ const UserTypePage = () => {
     }
   }, [location]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate authentication process
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Convert userType to singular form for role
+      const role = userType.slice(0, -1); // Remove 's' from the end
+      const { error } = await signIn(email, password);
+      
+      if (error) {
+        toast({
+          variant: "destructive",
+          title: "Login failed",
+          description: error.message,
+        });
+      } else {
+        // Redirect based on role
+        const dashboardRoute = getDashboardByRole(role);
+        navigate(dashboardRoute);
+        
+        toast({
+          title: "Welcome back!",
+          description: `Successfully logged in as ${role}`,
+        });
+      }
+    } catch (error: any) {
       toast({
-        title: isSignUp ? "Account Created" : "Login Successful",
-        description: `Welcome to GlucoTrackr ${
-          isSignUp ? "! Your account has been created" : ""
-        }!`,
+        variant: "destructive",
+        title: "Error",
+        description: error.message || "An error occurred during login",
       });
-      // Redirect to home page after successful login/signup
-      navigate("/");
-    }, 1500);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const getDashboardByRole = (role: string): string => {
+    switch (role.toLowerCase()) {
+      case "doctor":
+        return "/doctor-dashboard";
+      case "researcher":
+        return "/researcher-dashboard";
+      case "patient":
+      default:
+        return "/patient-dashboard";
+    }
   };
 
   const toggleAuthMode = () => {
@@ -116,7 +148,7 @@ const UserTypePage = () => {
         "Elevate your practice with GlucoTrackr's comprehensive patient management system. Monitor patient data in real-time, provide timely interventions, and improve treatment outcomes with our cutting-edge platform.",
       color: "from-green-400 to-teal-300",
       bgPattern:
-        "url(\"data:image/svg+xml,%3Csvg width='84' height='48' viewBox='0 0 84 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h12v6H0V0zm28 8h12v6H28V8zm14-8h12v6H42V0zm14 0h12v6H56V0zm0 8h12v6H56V8zM42 8h12v6H42V8zm0 16h12v6H42v-6zm14-8h12v6H56v-6zm14 0h12v6H70v-6zm0-16h12v6H70V0zM28 32h12v6H28v-6zM14 16h12v6H14v-6zM0 24h12v6H0v-6zm0 8h12v6H0v-6zm14 0h12v6H14v-6zm14 8h12v6H28v-6zm-14 0h12v6H14v-6zm28 0h12v6H42v-6zm14-8h12v6H56v-6zm0-8h12v6H56v-6zm14 8h12v6H70v-6zm0 8h12v6H70v-6zM14 24h12v6H14v-6zm14-8h12v6H28v-6zM14 8h12v6H14V8zM0 8h12v6H0V8z' fill='%23ffffff' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E\")",
+        "url(\"data:image/svg+xml,%3Csvg width='84' height='48' viewBox='0 0 84 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h12v6H0V0zm28 8h12v6H28V8zm14-8h12v6H42V0zm14 0h12v6H56V0zm0 8h12v6H56V8zM42 8h12v6H42V8zm0 16h12v6H42v-6zm14-8h12v6H56v-6zm14 0h12v6H70v-6zm0-16h12v6H70V0zM28 32h12v6H28v-6zM14 16h12v6H14v-6zm0 8h12v6H0v-6zm14 0h12v6H14v-6zm14 8h12v6H28v-6zm-14 0h12v6H14v-6zm28 0h12v6H42v-6zm14-8h12v6H56v-6zm0-8h12v6H56v-6zm14 8h12v6H70v-6zm0 8h12v6H70v-6zM14 24h12v6H14v-6zm14-8h12v6H28v-6zM14 8h12v6H14V8zM0 8h12v6H0V8z' fill='%23ffffff' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E\")",
       image: "https://source.unsplash.com/NFvdKIhxYlU/600x800",
     },
     researchers: {
@@ -505,3 +537,4 @@ const userTypes = {
 };
 
 export default UserTypePage;
+

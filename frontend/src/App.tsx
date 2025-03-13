@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -33,7 +32,7 @@ const App = () => (
               <Route path="/signup" element={<Signup />} />
               <Route path="/user-type" element={<UserTypePage />} />
               <Route
-                path="/patient-blockchain"
+                path="/patient-dashboard"
                 element={
                   <ProtectedRoute requiredRole="patient">
                     <PatientBlockchain />
@@ -64,7 +63,14 @@ const App = () => (
                   </ProtectedRoute>
                 }
               />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route
+                path="/patient-blockchain"
+                element={
+                  <ProtectedRoute requiredRole="patient">
+                    <PatientBlockchain />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AuthProvider>
