@@ -37,7 +37,7 @@ const Footer = () => {
           <div className="space-y-2 text-gray-300 mb-4">
             <div className="flex items-center justify-center">
               <Mail size={16} className="mr-2 text-glucotrack-blue" />
-              <span>support@glucotrackr.com</span>
+              <span>rachealloveo6@gmail.com</span>
             </div>
             <div className="flex items-center justify-center">
               <MapPin size={16} className="mr-2 text-glucotrack-blue" />
@@ -59,7 +59,7 @@ const Footer = () => {
               />
             </a>
             <a
-              href="https://twitter.com"
+              href="https://x.com/Racheallovee"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Twitter"
@@ -81,7 +81,7 @@ const Footer = () => {
               />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/racheal-muchiri"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
