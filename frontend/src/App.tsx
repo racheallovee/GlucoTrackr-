@@ -35,7 +35,7 @@ const App = () => (
                 path="/patient-dashboard"
                 element={
                   <ProtectedRoute requiredRole="patient">
-                    <PatientBlockchain />
+                    <PatientDashboard />
                   </ProtectedRoute>
                 }
               />
