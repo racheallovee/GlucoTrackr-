@@ -1,8 +1,10 @@
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import ConnectWallet from "./blockchain/ConnectWallet";
 import ContactSupportModal from "./ContactSupportModal";
 
 const Navbar = () => {
@@ -89,19 +91,8 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div className="hidden md:flex items-center space-x-3">
-            <Link
-              to="/login"
-              className="px-4 py-2 rounded-md bg-glucotrack-blue/10 text-glucotrack-blue hover:bg-glucotrack-blue/20 transition-colors"
-            >
-              Log in
-            </Link>
-            <Link
-              to="/signup"
-              className="px-4 py-2 rounded-md bg-glucotrack-blue text-white hover:bg-glucotrack-blue/90 transition-colors"
-            >
-              Sign up
-            </Link>
+          <div className="hidden md:flex items-center">
+            <ConnectWallet />
           </div>
 
           <button className="md:hidden" onClick={toggleMenu}>
@@ -150,20 +141,7 @@ const Navbar = () => {
                 FAQs
               </div>
               <div className="flex flex-col space-y-2 mt-4">
-                <Link
-                  to="/login"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="px-4 py-2 rounded-md bg-glucotrack-blue/10 text-glucotrack-blue text-center"
-                >
-                  Log in
-                </Link>
-                <Link
-                  to="/signup"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="px-4 py-2 rounded-md bg-glucotrack-blue text-white text-center"
-                >
-                  Sign up
-                </Link>
+                <ConnectWallet />
               </div>
             </div>
           </motion.div>
