@@ -24,21 +24,22 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+
+        <BrowserRouter future={{ v7_startTransition: true }}>
           <AuthProvider>
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/user-type" element={<UserTypePage />} />
-              <Route
+              {/* <Route
                 path="/patient-dashboard"
                 element={
                   <ProtectedRoute requiredRole="patient">
-                    <PatientDashboard />
+                    <PatientBlockchain />
                   </ProtectedRoute>
                 }
-              />
+              /> */}
               <Route
                 path="/patient-dashboard"
                 element={
