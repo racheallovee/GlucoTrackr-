@@ -11,13 +11,13 @@ import {
   Activity,
   LineChart,
 } from "lucide-react";
-import { useAuth } from "@/hooks/useAuth";
+// import { useAuth } from "@/hooks/useAuth";
 import ConnectWallet from "@/components/blockchain/ConnectWallet";
 import { Card } from "@/components/ui/card";
 import ContactSupportModal from "@/components/ContactSupportModal";
 
 const ResearcherDashboard = () => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
   const [mounted, setMounted] = useState(false);
   const [activeTab, setActiveTab] = useState("overview");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -74,9 +74,9 @@ const ResearcherDashboard = () => {
               >
                 <BarChart size={16} />
               </motion.div>
-              <span className="text-sm font-medium text-glucotrack-dark-gray">
+              {/* <span className="text-sm font-medium text-glucotrack-dark-gray">
                 {user?.email ? user.email.split("@")[0] : "Researcher"}
-              </span>
+              </span> */}
             </div>
           </div>
 

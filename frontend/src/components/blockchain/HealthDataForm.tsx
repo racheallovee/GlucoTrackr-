@@ -1,37 +1,38 @@
-
 import { useState } from "react";
 import { usePatientContract } from "@/hooks/usePatientContract";
 import { useWeb3 } from "@/hooks/useWeb3";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Loader2 } from "lucide-react";
 
 const HealthDataForm = () => {
   const { provider } = useWeb3();
   const { logHealthData, isLoading } = usePatientContract(provider);
-  
+
   const [glucoseLevel, setGlucoseLevel] = useState("");
   const [medication, setMedication] = useState("");
   const [meals, setMeals] = useState("");
   const [exercise, setExercise] = useState("");
-  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Basic validation
     if (!glucoseLevel || isNaN(Number(glucoseLevel))) {
       return;
     }
-    
-    await logHealthData(
-      Number(glucoseLevel),
-      medication,
-      meals,
-      exercise
-    );
-    
+
+    await logHealthData(Number(glucoseLevel), medication, meals, exercise);
+
     // Reset form on success
     if (!isLoading) {
       setGlucoseLevel("");
@@ -40,7 +41,7 @@ const HealthDataForm = () => {
       setExercise("");
     }
   };
-  
+
   return (
     <Card>
       <CardHeader>
@@ -52,7 +53,10 @@ const HealthDataForm = () => {
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="glucoseLevel" className="block text-sm font-medium mb-1">
+            <label
+              htmlFor="glucoseLevel"
+              className="block text-sm font-medium mb-1"
+            >
               Glucose Level (mg/dL)
             </label>
             <Input
@@ -64,9 +68,12 @@ const HealthDataForm = () => {
               required
             />
           </div>
-          
+
           <div>
-            <label htmlFor="medication" className="block text-sm font-medium mb-1">
+            <label
+              htmlFor="medication"
+              className="block text-sm font-medium mb-1"
+            >
               Medication
             </label>
             <Input
@@ -76,7 +83,7 @@ const HealthDataForm = () => {
               placeholder="e.g. Insulin 10 units"
             />
           </div>
-          
+
           <div>
             <label htmlFor="meals" className="block text-sm font-medium mb-1">
               Meals
@@ -89,9 +96,12 @@ const HealthDataForm = () => {
               rows={3}
             />
           </div>
-          
+
           <div>
-            <label htmlFor="exercise" className="block text-sm font-medium mb-1">
+            <label
+              htmlFor="exercise"
+              className="block text-sm font-medium mb-1"
+            >
               Exercise
             </label>
             <Textarea
@@ -102,8 +112,8 @@ const HealthDataForm = () => {
               rows={2}
             />
           </div>
-          
-          <Button type="submit" className="w-full" disabled={isLoading}>
+
+          <Button type="submit" className="w-44" disabled={isLoading}>
             {isLoading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />

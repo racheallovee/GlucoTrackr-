@@ -1,4 +1,5 @@
-import { ReactNode } from "react";
+
+import { ReactNode, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Loader2 } from "lucide-react";
@@ -10,8 +11,19 @@ interface ProtectedRouteProps {
 
 const ProtectedRoute = ({ children, requiredRole }: ProtectedRouteProps) => {
   const { user, userRole, loading } = useAuth();
+  const [showLoader, setShowLoader] = useState(true);
+  
+  // Only show loading state for a maximum of 3 seconds to prevent endless loading
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowLoader(false);
+    }, 3000);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
-  if (loading) {
+  // If still in initial loading state and within the timeout period, show loader
+  if (loading && showLoader) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin text-glucotrack-blue" />
@@ -19,6 +31,7 @@ const ProtectedRoute = ({ children, requiredRole }: ProtectedRouteProps) => {
     );
   }
 
+  // If not authenticated, redirect to login
   if (!user) {
     return <Navigate to="/login" replace />;
   }

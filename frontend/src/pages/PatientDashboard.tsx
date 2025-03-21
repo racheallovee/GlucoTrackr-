@@ -11,7 +11,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import { useAuth } from "@/hooks/useAuth";
+// import { useAuth } from "@/hooks/useAuth";
 import HealthDataForm from "@/components/blockchain/HealthDataForm";
 import HealthDataHistory from "@/components/blockchain/HealthDataHistory";
 import ConnectWallet from "@/components/blockchain/ConnectWallet";
@@ -19,7 +19,7 @@ import { Card } from "@/components/ui/card";
 import ContactSupportModal from "@/components/ContactSupportModal";
 
 const PatientDashboard = () => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
   const [mounted, setMounted] = useState(false);
   const [activeTab, setActiveTab] = useState("overview");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -73,9 +73,9 @@ const PatientDashboard = () => {
               >
                 <Heart size={16} />
               </motion.div>
-              <span className="text-sm font-medium text-glucotrack-dark-gray">
+              {/* <span className="text-sm font-medium text-glucotrack-dark-gray">
                 {user?.email ? user.email.split("@")[0] : "Patient"}
-              </span>
+              </span> */}
             </div>
           </div>
 

@@ -58,12 +58,12 @@ const HowItWorks = () => {
       description:
         "Receive AI-powered recommendations tailored to your unique health profile and diabetes management needs.",
     },
-    // {
-    //   icon: <Award size={30} />,
-    //   title: "Earn Rewards",
-    //   description:
-    //     "Stay motivated with our Web3 integration that rewards you for consistently managing your health goals.",
-    // },
+    {
+      icon: <Award size={30} />,
+      title: "Earn Rewards",
+      description:
+        "Stay motivated with our Web3 integration that rewards you for consistently managing your health goals.",
+    },
   ];
 
   return (
@@ -92,7 +92,7 @@ const HowItWorks = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, index) => (
             <Step
               key={index}

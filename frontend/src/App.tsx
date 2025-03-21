@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -16,7 +17,14 @@ import ResearcherDashboard from "./pages/ResearcherDashboard";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 1,
+    },
+  },
+});
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -32,46 +40,38 @@ const App = () => (
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/user-type" element={<UserTypePage />} />
-              {/* <Route
-                path="/patient-dashboard"
-                element={
-                  <ProtectedRoute requiredRole="patient">
-                    <PatientBlockchain />
-                  </ProtectedRoute>
-                }
-              /> */}
               <Route
                 path="/patient-dashboard"
                 element={
-                  <ProtectedRoute requiredRole="patient">
-                    <PatientDashboard />
-                  </ProtectedRoute>
+                  // <ProtectedRoute requiredRole="patient">
+                  <PatientDashboard />
+                  // </ProtectedRoute>
                 }
               />
               <Route
                 path="/doctor-dashboard"
                 element={
-                  <ProtectedRoute requiredRole="doctor">
-                    <DoctorDashboard />
-                  </ProtectedRoute>
+                  // <ProtectedRoute requiredRole="doctor">
+                  <DoctorDashboard />
+                  // </ProtectedRoute>
                 }
               />
               <Route
                 path="/researcher-dashboard"
                 element={
-                  <ProtectedRoute requiredRole="researcher">
-                    <ResearcherDashboard />
-                  </ProtectedRoute>
+                  // <ProtectedRoute requiredRole="researcher">
+                  <ResearcherDashboard />
+                  // </ProtectedRoute>
                 }
               />
-              <Route
+              {/* <Route
                 path="/patient-blockchain"
                 element={
                   <ProtectedRoute requiredRole="patient">
                     <PatientBlockchain />
                   </ProtectedRoute>
                 }
-              />
+              /> */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AuthProvider>

@@ -31,7 +31,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         .from("profiles")
         .select("user_type")
         .eq("id", userId)
-        .single();
+        .maybeSingle();
 
       if (error) {
         console.error("Error fetching user role:", error);
@@ -46,41 +46,69 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    // Check active session
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
-      setSession(session);
-      
-      if (session?.user) {
-        setUser(session.user);
-        const role = await fetchUserRole(session.user.id);
-        setUserRole(role);
-      } else {
-        setUser(null);
-        setUserRole(null);
-      }
-      
-      setLoading(false);
-    });
-
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (_event, session) => {
-        setSession(session);
+    let isMounted = true;
+    
+    const initAuth = async () => {
+      try {
+        // Set up auth state listener first
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(
+          async (_event, session) => {
+            if (!isMounted) return;
+            
+            if (session?.user) {
+              setUser(session.user);
+              setSession(session);
+              const role = await fetchUserRole(session.user.id);
+              if (isMounted) {
+                setUserRole(role);
+                setLoading(false);
+              }
+            } else {
+              if (isMounted) {
+                setUser(null);
+                setSession(null);
+                setUserRole(null);
+                setLoading(false);
+              }
+            }
+          }
+        );
+        
+        // Then check for existing session
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        if (!isMounted) return;
         
         if (session?.user) {
           setUser(session.user);
+          setSession(session);
           const role = await fetchUserRole(session.user.id);
-          setUserRole(role);
-        } else {
-          setUser(null);
-          setUserRole(null);
+          if (isMounted) {
+            setUserRole(role);
+          }
         }
         
-        setLoading(false);
+        // Ensure loading is set to false even if no session exists
+        if (isMounted) {
+          setLoading(false);
+        }
+        
+        return () => {
+          subscription.unsubscribe();
+        };
+      } catch (error) {
+        console.error("Auth initialization error:", error);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
-    );
-
-    return () => subscription.unsubscribe();
+    };
+    
+    initAuth();
+    
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const getDashboardRoute = (role: string | null): string => {
