@@ -14,9 +14,10 @@ import {
 // import { useAuth } from "@/hooks/useAuth";
 import HealthDataForm from "@/components/blockchain/HealthDataForm";
 import HealthDataHistory from "@/components/blockchain/HealthDataHistory";
-import ConnectWallet from "@/components/blockchain/ConnectWallet";
+// import ConnectWallet from "@/components/blockchain/ConnectWallet";
 import { Card } from "@/components/ui/card";
 import ContactSupportModal from "@/components/ContactSupportModal";
+import ConnectWallet from "@/components/blockchain/ConnectWallet";
 
 const PatientDashboard = () => {
   // const { user } = useAuth();

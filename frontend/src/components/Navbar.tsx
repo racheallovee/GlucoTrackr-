@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -66,7 +65,7 @@ const Navbar = () => {
 
           <div className="hidden md:flex items-center justify-center space-x-8">
             <div
-              onClick={() => scrollToSection("features")}
+              onClick={() => scrollToSection("how-it-works")}
               className="cursor-pointer hover:text-glucotrack-blue transition-colors"
             >
               Features

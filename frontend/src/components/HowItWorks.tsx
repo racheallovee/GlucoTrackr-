@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Bluetooth, Activity, Brain, Award } from "lucide-react";
+import {
+  Bluetooth,
+  Activity,
+  Brain,
+  Award,
+  HeartPulse,
+  Stethoscope,
+  FlaskConical,
+} from "lucide-react";
 
 interface StepProps {
   icon: React.ReactNode;
@@ -41,28 +49,22 @@ const HowItWorks = () => {
 
   const steps = [
     {
-      icon: <Bluetooth size={30} />,
-      title: "Connect Your Device",
+      icon: <HeartPulse size={30} />,
+      title: "Empower Your Health",
       description:
-        "Seamlessly sync with your glucose monitors, insulin pumps, and other wearable devices for automatic data collection.",
+        "Monitor your glucose levels in real-time, detect trends, and take control of your diabetes with actionable insights.",
     },
     {
-      icon: <Activity size={30} />,
-      title: "Track in Real-Time",
+      icon: <Stethoscope size={30} />,
+      title: "Smarter Patient Care",
       description:
-        "Monitor your glucose levels, identify patterns, and visualize trends with our intuitive dashboard.",
+        "Access real-time patient glucose trends, enhance treatment plans, and make data-driven decisions with ease.",
     },
     {
-      icon: <Brain size={30} />,
-      title: "Get Personalized Insights",
+      icon: <FlaskConical size={30} />,
+      title: "Accelerate Diabetes Research",
       description:
-        "Receive AI-powered recommendations tailored to your unique health profile and diabetes management needs.",
-    },
-    {
-      icon: <Award size={30} />,
-      title: "Earn Rewards",
-      description:
-        "Stay motivated with our Web3 integration that rewards you for consistently managing your health goals.",
+        "Gain secure access to verified, anonymized patient data to drive groundbreaking research and innovation.",
     },
   ];
 
@@ -86,13 +88,17 @@ const HowItWorks = () => {
             Effortless{" "}
             <span className="text-glucotrack-blue">Diabetes Management</span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          {/* <p className="text-gray-600 max-w-2xl mx-auto">
             GlucoTrackr simplifies your diabetes care journey with an intuitive
             four-step process designed for your success.
+          </p> */}
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            GlucoTrackr streamlines diabetes management with three simple steps:
+            track your health, enable smarter care, and advance research.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {steps.map((step, index) => (
             <Step
               key={index}

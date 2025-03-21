@@ -60,7 +60,7 @@ const HeroSection = () => {
             >
               Take control of your
               <span className="text-glucotrack-blue"> diabetes</span> with
-              precision today
+              precision today.
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -68,9 +68,9 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-lg text-gray-600 mb-8 max-w-xl"
             >
-              GlucoTrackr delivers real-time glucose monitoring, personalized
-              insights, and Web3 integration for a seamless diabetes management
-              experience.
+              GlucoTrackr provides real-time blood glucose monitoring for
+              patients, trend analysis for doctors, and secure data access for
+              researchers for better diabetes management.
             </motion.p>
             <div className="flex flex-wrap gap-4 mb-10">
               <motion.div
