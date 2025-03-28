@@ -90,9 +90,9 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div className="hidden md:flex items-center">
+          {/* <div className="hidden md:flex items-center">
             <ConnectWallet />
-          </div>
+          </div> */}
 
           <button className="md:hidden" onClick={toggleMenu}>
             {isMenuOpen ? (
@@ -139,9 +139,9 @@ const Navbar = () => {
               >
                 FAQs
               </div>
-              <div className="flex flex-col space-y-2 mt-4">
+              {/* <div className="flex flex-col space-y-2 mt-4">
                 <ConnectWallet />
-              </div>
+              </div> */}
             </div>
           </motion.div>
         )}
